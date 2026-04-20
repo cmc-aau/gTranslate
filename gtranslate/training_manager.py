@@ -57,15 +57,17 @@ class TrainingManager(object):
         self.GTDB_TT25 = set(['o__Absconditabacterales', 'o__BD1-5'])
         self.GTDB_TT4 = set(['o__Mycoplasmatales', 's__Zinderia insecticola'])
 
-        # Eggerthellacea genera using table 4; will need to be updated to names in Parks et al., 2026
-        # once these appear in GTDB
-        self.GTDB_TT4.update(set(['g__CAVGFB01', 'g__JAUNQF01']))
+        # Eggerthellacea genera using table 4
+        self.GTDB_TT4.update(set(['g__Equivita', 'g__Gorillivita']))
 
         # Minisyncoccia family identified in gTranslate manuscript that uses table 4. The majority, but not
         # all genomes in g__GCA-2747955 were also identified as using table 4. Currently, this is handled by
         # explicitly indicating the species in this genus identified as using table 4.
-        self.GTDB_TT4.update(set(['f__JAKLIH01', 's__GCA-2747955 sp027024305', 's__GCA-2747955 sp027039745',
-                                  's__GCA-2747955 sp947311625']))
+        self.GTDB_TT4.update(set(['f__JAKLIH01', 
+                                  's__GCA-2747955 sp027024305', 
+                                  's__GCA-2747955 sp027039745',
+                                  's__GCA-2747955 sp947311625',
+                                  's__GCA-2747955 sp964509275']))
 
         # Must include the Fastidiosibacteraceae XS4 species cluster once (if) this genome appears in GTDB:
         #  - https://www.ncbi.nlm.nih.gov/nuccore/AP038919.1
@@ -73,7 +75,9 @@ class TrainingManager(object):
 
         # Ground truth from NCBI classifications
         self.NCBI_TT4 = set(['s__Candidatus Hodgkinia cicadicola', 's__Candidatus Nasuia deltocephalincola', 's__Candidatus Stammera capleta'])
+        self.NCBI_TT4.update(set(['s__Candidatus Pinguicoccus supinus', 's__Candidatus Organicella extenuata']))
         self.NCBI_TT4.update(set(['s__Hodgkinia cicadicola', 's__Nasuia deltocephalincola', 's__Stammera capleta']))
+        self.NCBI_TT4.update(set(['s__Pinguicoccus supinus', 's__Candidatus Organicella extenuata']))
 
         # species appears to have incorrect spelling at NCBI
         self.NCBI_TT4.update(set(['s__Candidatus Nasuia deltocephalinicola', 's__Nasuia deltocephalinicola']))
