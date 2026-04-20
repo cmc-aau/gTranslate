@@ -105,7 +105,7 @@ class EvaluateMisclassifications(object):
 
             gid_idx = header.index('user_genome')
             tt_idx = header.index('best_tln_table')
-            cd4_ind = header.index('coding_density_4')
+            cd4_idx = header.index('coding_density_4')
             cd11_idx = header.index('coding_density_11')
             gc_idx = header.index('gc_percent')
             n50_idx = header.index('n50')
@@ -116,19 +116,28 @@ class EvaluateMisclassifications(object):
                 tokens = line.strip().split('\t')
 
                 gid = canonical_gid(tokens[gid_idx])
-                tt = tokens[tt_idx]
-
                 if gid not in ground_truth:
                     self.log.error(f'Genome not in ground truth: {gid}')
                     sys.exit(1)
 
-                if ground_truth[gid].translation_table == tt:
-                    # correctly predicted by gTranslate
+                tt = tokens[tt_idx]
+
+                # determine CheckM predictions
+                cd4 = float(tokens[cd4_idx])
+                cd11 = float(tokens[cd11_idx])
+                checkm_prediction = '11'
+                if (cd4 - cd11) > 5 and cd4 > 70:
+                    checkm_prediction = '4 or 25'
+
+                checkm_correct = ground_truth[gid].translation_table == checkm_prediction or (ground_truth[gid].translation_table in ['4', '25'] and checkm_prediction == '4 or 25')
+
+                if ground_truth[gid].translation_table == tt and checkm_correct:
+                    # correctly predicted by gTranslate and CheckM
                     continue
 
                 misclassifications[gid] = gTranslateData(
                     tt,
-                    float(tokens[cd4_ind]),
+                    float(tokens[cd4_idx]),
                     float(tokens[cd11_idx]),
                     float(tokens[gc_idx]),
                     int(tokens[n50_idx]),

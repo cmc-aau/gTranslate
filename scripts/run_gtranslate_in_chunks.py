@@ -68,26 +68,16 @@ class gTranslateInChunks(object):
                 os.symlink(genome_path, os.path.join(genome_chunk_dir, os.path.basename(genome_path)))
 
             gtranslate_out_dir = os.path.join(out_dir, f'gtranslate{chunk_num}')
-
-            if False:
-                cmd = [
-                    'gtranslate', 'detect_table',
-                    '--genome_dir', genome_chunk_dir,
-                    '--out_dir', gtranslate_out_dir,
-                    '-x', 'gz',
-                    '--custom_model_path', custom_model_path,
-                    '--cpus', str(cpus)
-                ]
-                subprocess.run(cmd, check=True)
-            else:
-                # useful for local execution during development
-                cmd = 'python3 ~/git/gtranslate/gtranslate detect_table'
-                cmd += f' --genome_dir {genome_chunk_dir}'
-                cmd += f' --out_dir {gtranslate_out_dir}'
-                cmd += ' -x gz'
-                cmd += f' --cpus {cpus}'
-                cmd += f' --custom_model_path {custom_model_path}'
-                os.system(cmd)
+   
+            cmd = [
+                'gtranslate', 'detect_table',
+                '--genome_dir', genome_chunk_dir,
+                '--out_dir', gtranslate_out_dir,
+                '-x', 'gz',
+                '--custom_model_path', custom_model_path,
+                '--cpus', str(cpus)
+            ]
+            subprocess.run(cmd, check=True)
 
             self.log.info(f' - processed chunk {chunk_num+1}')
 
