@@ -352,10 +352,10 @@ class EvaluateMisclassifications(object):
             ))
 
             fout.write('\t{}\t{}\t{}\t{}'.format(
-                genomic_properties[gid][4].tRNA_Trp_tca,
-                genomic_properties[gid][4].RF2,
                 genomic_properties[gid][11].tRNA_Trp_tca,
-                genomic_properties[gid][11].RF2
+                genomic_properties[gid][11].RF2,
+                genomic_properties[gid][4].tRNA_Trp_tca,
+                genomic_properties[gid][4].RF2
             ))
 
             fout.write('\t{}\t{}'.format(
