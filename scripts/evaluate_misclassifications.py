@@ -164,6 +164,25 @@ class EvaluateMisclassifications(object):
 
         return genome_paths
 
+    def decompress_genomes(self, genome_paths: dict, misclassified_gids: dict, out_dir: str) -> dict:
+        """Decompress putatively misclassified genomes."""
+
+        genome_dir = os.path.join(out_dir, 'genomes')
+        os.makedirs(genome_dir, exist_ok=True)
+
+        genome_paths_decompressed = {}
+        for gid in misclassified_gids:
+            # copy and decompress genomic FASTA file
+            decompressed_genome_file = os.path.join(genome_dir, f'{gid}.fna')
+            if not os.path.exists(decompressed_genome_file):
+                cur_genome_file = decompressed_genome_file + '.gz'
+                shutil.copyfile(genome_paths[gid], cur_genome_file)
+                subprocess.run(['pigz', '-d', cur_genome_file], check=True)
+
+            genome_paths_decompressed[gid] = decompressed_genome_file
+
+        return genome_paths_decompressed
+
     def parse_prokka_results(self, gff_file: str):
         """Parse Prokka annotations for tRNA-Trp, RF1, and RF2, genes."""
 
@@ -185,39 +204,24 @@ class EvaluateMisclassifications(object):
                   
         return ProkkaResult(tRNA_Trp_tca, rf2)
 
-    def decompress_genomes(self, genome_paths: dict, misclassified_gids: dict, out_dir: str) -> dict:
-        """Decompress putatively misclassified genomes."""
-
-        genome_dir = os.path.join(out_dir, 'genomes')
-        os.makedirs(genome_dir, exist_ok=True)
-
-        genome_paths_decompressed = {}
-        for gid in misclassified_gids:
-            # copy and decompress genomic FASTA file
-            decompressed_genome_file = os.path.join(genome_dir, f'{gid}.fna')
-            if not os.path.exists(decompressed_genome_file):
-                cur_genome_file = decompressed_genome_file + '.gz'
-                shutil.copyfile(genome_paths[gid], cur_genome_file)
-                subprocess.run(['pigz', '-d', cur_genome_file], check=True)
-                genome_paths_decompressed[gid] = decompressed_genome_file
-
-        return genome_paths_decompressed
-
     def _run_prokka_for_genome(self, gid: str, genome_path: str, prokka_dir: str) -> tuple:
         """Run Prokka for a single genome."""
 
         results = {}
         for tt in [4, 11]:
-            # run prokka
-            cmd = [
-                'prokka', '--kingdom', 'Bacteria', '--outdir', prokka_dir,
-                '--locustag', f'{gid}-tt{tt}', '--prefix', f'{gid}-tt{tt}',
-                '--gcode', str(tt), genome_path,
-                '--cpus', '8', '--force',
-            ]
-            subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            gff_file = os.path.join(prokka_dir, f'{gid}-tt{tt}.gff')
+            if not os.path.exists(gff_file):
+                # run prokka
+                cmd = [
+                    'prokka', '--kingdom', 'Bacteria', '--outdir', prokka_dir,
+                    '--locustag', f'{gid}-tt{tt}', '--prefix', f'{gid}-tt{tt}',
+                    '--gcode', str(tt), genome_path,
+                    '--cpus', '8', '--force',
+                ]
 
-            results[tt] = self.parse_prokka_results(os.path.join(prokka_dir, f'{gid}-tt{tt}.gff'))
+                subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+            results[tt] = self.parse_prokka_results(gff_file)
             
         return gid, results
 
@@ -250,11 +254,12 @@ class EvaluateMisclassifications(object):
 
         # TBD: replace with call to Codetta installed system wide
         inference_file = f'{codetta_dir}/{gid}-inference'
-        cmd = f'~/git/codetta/codetta.py {genome_path} --resource_directory ~/git/codetta/resources'
-        cmd += f' -s {codetta_dir}/{gid}-summary.tsv'
-        cmd += f' --align_output {codetta_dir}/{gid}-align'
-        cmd += f' --inference_output {inference_file}'
-        os.system(cmd)
+        if not os.path.exists(inference_file):
+            cmd = f'~/git/codetta/codetta.py {genome_path} --resource_directory ~/git/codetta/resources'
+            cmd += f' -s {codetta_dir}/{gid}-summary.tsv'
+            cmd += f' --align_output {codetta_dir}/{gid}-align'
+            cmd += f' --inference_output {inference_file}'
+            os.system(cmd)
 
         # parse Codetta results
         codetta_result = None
