@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1251.24 467.4">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        stroke-width: 50px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-linecap: round;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-6 {
+        stroke: #000;
+      }
+
+      .cls-7 {
+        fill: #005b20;
+      }
+
+      .cls-2, .cls-5 {
+        stroke: #005b20;
+      }
+
+      .cls-8 {
+        fill: #7d6d68;
+      }
+
+      .cls-3, .cls-4 {
+        stroke: #dacfcd;
+      }
+
+      .cls-3, .cls-5 {
+        stroke-width: 25.4px;
+      }
+
+      .cls-4 {
+        stroke-width: 21.43px;
+      }
+
+      .cls-5 {
+        stroke-linecap: square;
+      }
+
+      .cls-6 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-9 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-10 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-11 {
+        font-family: Arial-Black, 'Arial Black';
+        font-size: 120px;
+        font-weight: 800;
+      }
+
+      .cls-12 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g id="Generative_Object" data-name="Generative Object">
+    <g>
+      <path class="cls-8" d="M447.78,410.99l-31.75.02-24.55-86.57-23.54,86.57h-31.73s-38.25-131.76-38.25-131.76l32.6-.28,18.51,69.62,4.92,21.18,1.05-1.38c.35-.45,1.03-.89.21-1.38l9.56-38.66,12.79-49.28,26.83-.05,25.06,91.48,5.96-24.77,16.94-66.81,32.42.11-37.05,131.94Z"/>
+      <polygon class="cls-6" points="221.61 279.44 243.09 279.44 243.24 410.43 221.61 410.51 221.61 279.44"/>
+    </g>
+    <g>
+      <polyline class="cls-1" points="345.92 180.14 360.12 67.94 444.67 68.05 444.53 180.14"/>
+      <line class="cls-1" x1="362" y1="125.36" x2="435.83" y2="125.36"/>
+      <g>
+        <polyline class="cls-1" points="54.88 67.94 54.88 179.32 130.48 179.4 128.99 67.2"/>
+        <polyline class="cls-1" points="54.88 67.94 54.88 179.32 130.48 179.4 128.99 67.2"/>
+      </g>
+      <path class="cls-5" d="M142.27,295.73l-10.67-1.85c-16.41-2.88-29.63-4.09-46.09.81-13.35,3.98-24.39,12.46-30.26,25.67-13.18,29.62-2.25,68.15,32.01,75.89,13.81,3.12,28.19,3.23,41.84-.41l16.55-4.42-.25-41.44-34.78-2.01"/>
+      <polyline class="cls-2" points="290.64 67.2 194.48 67.2 194.48 180.06 292 180.14 291.12 125.54 250.03 125.18"/>
+      <polygon class="cls-4" points="501.24 10.72 501.28 456.66 10.75 456.68 10.72 10.72 501.24 10.72"/>
+      <line class="cls-3" x1="492.2" y1="226.97" x2="19.85" y2="227.78"/>
+    </g>
+  </g>
+  <polygon class="cls-6" points="297.96 334.24 297.96 355.72 166.98 355.79 166.89 334.16 297.96 334.24"/>
+  <polygon class="cls-6" points="271.17 291.02 286.36 306.21 193.85 398.94 178.49 383.7 271.17 291.02"/>
+  <polygon class="cls-6" points="178.47 306.23 193.66 291.04 286.39 383.55 271.15 398.91 178.47 306.23"/>
+  <text class="cls-11" transform="translate(531.49 270.74)"><tspan class="cls-7" x="0" y="0">g</tspan><tspan class="cls-10" x="80.04" y="0">T</tspan><tspan class="cls-12" x="161.54" y="0">r</tspan><tspan x="216.86" y="0">ansl</tspan><tspan class="cls-9" x="490.2" y="0">a</tspan><tspan x="568.18" y="0">te</tspan></text>
+</svg>
