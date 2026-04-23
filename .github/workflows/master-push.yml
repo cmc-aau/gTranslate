@@ -1,9 +1,9 @@
 # This workflow automatically generates the Sphinx documentation required for
-# GitHub pages. Executed when master is pushed to.
+# GitHub pages. Executed when main is pushed to.
 name: Documentation update
 on:
   push:
-    branches: master
+    branches: main
   workflow_dispatch:
 
 jobs:
@@ -14,10 +14,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      # Checkout the master branch (docs will be built from this)
+      # Checkout the main branch (docs will be built from this)
       - uses: actions/checkout@v2
         with:
-          path: master
+          path: main
 
       # Checkout the documentation branch (docs will be pushed to this)
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
           path: gh_pages
 
       - name: Install Sphinx requirements
-        working-directory: ${{ github.workspace }}/master/docs
+        working-directory: ${{ github.workspace }}/main/docs
         run: |
           sudo apt-get update -y
           sudo apt-get install -y pandoc
@@ -34,13 +34,13 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Build documentation
-        working-directory: ${{ github.workspace }}/master/docs
+        working-directory: ${{ github.workspace }}/main/docs
         run: make html
 
       - name: Move documentation
         run: |
-          touch master/docs/build/html/.nojekyll
-          cp -a master/docs/build/html/. gh_pages/
+          touch main/docs/build/html/.nojekyll
+          cp -a main/docs/build/html/. gh_pages/
 
       - name: Upload documentation
         working-directory: ${{ github.workspace }}/gh_pages
