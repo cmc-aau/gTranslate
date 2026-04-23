@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtdb-gtranslate"
+# 1. Version is the ONLY dynamic field now
+dynamic = ["version"]
+
+# 2. All of these are now statically defined
+description = "software tool designed to accurately identify the genetic translation table (GTT) used in prokaryotic organisms."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "GPL-3.0-only"
+
+authors = [
+  {name = "Pierre-Alain Chaumeil", email = "pch@bio.aau.dk"},
+  {name = "Aaron Mussig"},
+  {name = "Donovan Parks"}
+]
+
+urls = {repository = "https://github.com/cmc-aau/gTranslate"}
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+dependencies = [
+    "joblib ~= 1.3",
+    "numpy ~= 1.26",
+    "pandas ~= 2.2",
+    "scikit-learn == 1.6.1",
+    "scipy ~= 1.12",
+    "tqdm ~= 4.67",
+    "imblearn ~= 0.0",
+    "imbalanced-learn ~= 0.13",
+    "mlxtend ~= 0.23",
+    "plotly ~= 5.15",
+    "xgboost == 2.1.4",
+    "lightgbm == 4.6.0",
+    "requests >= 2.32.3"
+]
+
+[project.scripts]
+gtranslate = "gtranslate.__main__:main"
+
+[tool.setuptools.dynamic]
+# 3. Only the version is pulled from your __init__.py
+version = {attr = "gtranslate.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["."]
