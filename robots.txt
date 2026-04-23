@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://cmc-aau.github.io/gTranslate/sitemap.xml
