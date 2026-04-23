@@ -31,7 +31,7 @@ version = __version__
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinxarg.ext', 'sphinx.ext.napoleon', 'sphinx.ext.autodoc', 'linuxdoc.rstFlatTable',
-              'recommonmark', 'sphinx_sitemap', 'nbsphinx','matplotlib.sphinxext.plot_directive']
+              'myst-parser', 'sphinx_sitemap', 'nbsphinx','matplotlib.sphinxext.plot_directive']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
