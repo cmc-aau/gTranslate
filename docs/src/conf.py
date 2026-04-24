@@ -77,14 +77,15 @@ html_theme_options = {
 html_static_path = ['_static']
 
 html_context = {
-    'css_files': [
-        '_static/theme_overrides.css',  # override wide tables in RTD theme
-        ],
     'display_github': True,
     'github_user': 'cmc-aau',
     'github_repo': 'gTranslate',
     'github_version': 'master/docs/src/'
      }
+
+html_css_files = [
+    'theme_overrides.css',
+]
 
 html_js_files = [
     'custom.js'
