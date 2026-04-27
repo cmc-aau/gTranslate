@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>detect_table &mdash; gTranslate 0.0.2 documentation</title>
+  <title>generate_plot &mdash; gTranslate 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=3cb91acd" />
 
   
-    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/commands/detect_table.html" />
+    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/commands/generate_plot.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=e3a6060d"></script>
@@ -41,8 +41,8 @@
 
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="fit_models" href="fit_models.html" />
-    <link rel="prev" title="build_features" href="build_features.html" />
+    <link rel="next" title="test" href="test.html" />
+    <link rel="prev" title="fit_models" href="fit_models.html" />
  
 </head>
 
@@ -75,9 +75,10 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Commands</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="build_features.html">build_features</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">detect_table</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="detect_table.html">detect_table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit_models.html">fit_models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">generate_plot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#arguments">Arguments</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments">mutually exclusive required arguments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-required-named-arguments">required named arguments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-optional-arguments">optional arguments</a></li>
 </ul>
@@ -90,8 +91,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="fit_models.html">fit_models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generate_plot.html">generate_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test.html">test</a></li>
 </ul>
 </li>
@@ -117,9 +116,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Commands</a></li>
-      <li class="breadcrumb-item active">detect_table</li>
+      <li class="breadcrumb-item active">generate_plot</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/commands/detect_table.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/commands/generate_plot.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -127,100 +126,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="detect-table">
-<span id="commands-detect-table"></span><h1>detect_table<a class="headerlink" href="#detect-table" title="Link to this heading"></a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">detect_table</span></code> command is the main command of gtranslate.
-It is used to predict the translation table (TT) used by prokaryotic genomes. By analyzing specific sequence features — such as coding density differences, Trp ratios, and Gly ratios — <cite>gTranslate</cite> can accurately distinguish between the genetic codes associated with reassignment of the UGA stop codon, i.e. translation tables 11 (standard prokaryotic code), 4 (UGA=Trp), and 25 (UGA=Gly).</p>
+  <section id="generate-plot">
+<span id="commands-generate-plot"></span><h1>generate_plot<a class="headerlink" href="#generate-plot" title="Link to this heading"></a></h1>
+<p>Machine learning can sometimes feel like a “black box”. <code class="docutils literal notranslate"><span class="pre">generate_plot</span></code> lets you see exactly why the model made a certain call. It creates an interactive HTML dashboard where you can see your genomes mapped out. You can visually explore how they cluster based on their Trp/Gly ratios and coding density, making it much easier to verify outliers or double-check tricky predictions.</p>
 <section id="arguments">
 <h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">gtranslate</span> <span class="n">detect_table</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
-                               <span class="p">(</span><span class="o">--</span><span class="n">genome_dir</span> <span class="n">GENOME_DIR</span> <span class="o">|</span> <span class="o">--</span><span class="n">batchfile</span> <span class="n">BATCHFILE</span><span class="p">)</span>
-                               <span class="o">--</span><span class="n">out_dir</span> <span class="n">OUT_DIR</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="n">EXTENSION</span><span class="p">]</span>
-                               <span class="p">[</span><span class="o">--</span><span class="n">tmpdir</span> <span class="n">TMPDIR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cpus</span> <span class="n">CPUS</span><span class="p">]</span>
-                               <span class="p">[</span><span class="o">--</span><span class="n">custom_model_path</span> <span class="n">CUSTOM_MODEL_PATH</span><span class="p">]</span>
-                               <span class="p">[</span><span class="o">--</span><span class="n">keep_called_genes</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">prefix</span> <span class="n">PREFIX</span><span class="p">]</span>
-                               <span class="p">[</span><span class="o">--</span><span class="n">force</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">gtranslate</span> <span class="n">generate_plot</span> <span class="o">--</span><span class="n">feature_file</span> <span class="n">FEATURE_FILE</span> <span class="o">--</span><span class="n">output_file</span>
+                                <span class="n">OUTPUT_FILE</span>
+                                <span class="p">[</span><span class="o">--</span><span class="n">selected_genome_file</span> <span class="n">SELECTED_GENOME_FILE</span><span class="p">]</span>
+                                <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments">
-<h3>mutually exclusive required arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments" title="Link to this heading"></a></h3>
-<dl class="option-list">
-<dt><kbd>--genome_dir</kbd></dt>
-<dd><p>directory containing genome files in FASTA format</p>
-</dd>
-<dt><kbd>--batchfile</kbd></dt>
-<dd><p>path to file describing genomes - tab separated in 2 columns (FASTA file, genome ID)</p>
-</dd>
-</dl>
-</section>
 <section id="gtranslate.cli-get_main_parser-required-named-arguments">
 <h3>required named arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-required-named-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
-<dt><kbd>--out_dir</kbd></dt>
-<dd><p>directory to output files</p>
+<dt><kbd>--feature_file</kbd></dt>
+<dd><p>path to TSV file containing features for each genome</p>
+</dd>
+<dt><kbd>--output_file</kbd></dt>
+<dd><p>path to output file</p>
 </dd>
 </dl>
 </section>
 <section id="gtranslate.cli-get_main_parser-optional-arguments">
 <h3>optional arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-optional-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
-<dt><kbd>-x, --extension</kbd></dt>
-<dd><p>extension of files to process, e.g., “fna”, “fasta”, “gz” for gzipped files</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">'fna'</span></code></p>
-</dd>
-<dt><kbd>--tmpdir</kbd></dt>
-<dd><p>specify alternative directory for temporary files</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">'/tmp'</span></code></p>
-</dd>
-<dt><kbd>--cpus</kbd></dt>
-<dd><p>number of CPUs to use</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
-</dd>
-<dt><kbd>--custom_model_path</kbd></dt>
-<dd><p>Path to file containing custom models.</p>
-</dd>
-<dt><kbd>--keep_called_genes</kbd></dt>
-<dd><p>keep genes called with the right Translation table.</p>
-</dd>
-<dt><kbd>--prefix</kbd></dt>
-<dd><p>prefix for all output files</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">'gtranslate'</span></code></p>
-</dd>
-<dt><kbd>--force</kbd></dt>
-<dd><p>continue processing if an error occurs on a single genome</p>
+<dt><kbd>--selected_genome_file</kbd></dt>
+<dd><p>path to file containing the list of selected genomes.One genome ID per line.</p>
 </dd>
 </dl>
 </section>
 </section>
 <section id="files-output">
 <h2>Files output<a class="headerlink" href="#files-output" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="../files/translation_table_summary.tsv.html#files-translation-table-summary-tsv"><span class="std std-ref">[prefix].translation_table_summary.tsv</span></a></p></li>
-<li><p><a class="reference internal" href="../files/gtranslate.log.html#files-gtranslate-log"><span class="std std-ref">[prefix].log</span></a></p></li>
-<li><p><a class="reference internal" href="../files/gtranslate.warnings.log.html#files-gtranslate-warnings-log"><span class="std std-ref">[prefix].warnings.log</span></a></p></li>
-</ul>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <section id="input">
 <h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gtranslate<span class="w"> </span>detect_table<span class="w"> </span>--genome_dir<span class="w"> </span>test_command/genomes<span class="w"> </span>--out_dir<span class="w"> </span>test_command/output_multi<span class="w"> </span>--cpus<span class="w"> </span><span class="m">3</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gtranslate<span class="w"> </span>generate_plot<span class="w"> </span>--feature_file<span class="w"> </span>gtranslate_featured.tsv<span class="w"> </span>--output_file<span class="w"> </span>gtranslate_plot.html
 </pre></div>
 </div>
 </section>
 <section id="output">
 <h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[2026-03-05 20:36:09] INFO: gTranslate v0.0.2
-[2026-03-05 20:36:09] INFO: gtranslate detect_table --genome_dir test_command/genomes --out_dir test_command/output_multi --cpus 3
-[2026-03-05 20:36:09] INFO: Running detect_table
-[2026-03-05 20:36:10] TASK: Running Prodigal V2.6.3 to identify genes.
-[2026-03-05 20:36:27] INFO: Completed 3 genomes in 17.09 seconds (5.70 seconds/genome).
-[2026-03-05 20:36:27] TASK: Summarising translation tables.
-[2026-03-05 20:36:27] INFO: Completed 3 genomes in 0.00 seconds (31,615.36 genomes/second).
-[2026-03-05 20:36:27] INFO: Cleaning up intermediate files.
-[2026-03-05 20:36:27] INFO: Deleting generated gene files.
-[2026-03-05 20:36:27] INFO: gene files deleted.
-[2026-03-05 20:36:27] INFO: Done.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[2026-04-27 22:30:33] INFO: gTranslate v0.0.2
+[2026-04-27 22:30:33] INFO: gtranslate generate_plot --feature_file gtranslate_featured.tsv --output_file gtranslate_plot.html
+[2026-04-27 22:30:33] INFO: Running generate_plot
+[2026-04-27 22:30:49] INFO: Interactive HTML dashboard generated: gtranslate_plot.html
+[2026-04-27 22:30:49] INFO: Done.
 </pre></div>
 </div>
 </section>
@@ -231,8 +185,8 @@ It is used to predict the translation table (TT) used by prokaryotic genomes. By
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="build_features.html" class="btn btn-neutral float-left" title="build_features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="fit_models.html" class="btn btn-neutral float-right" title="fit_models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="fit_models.html" class="btn btn-neutral float-left" title="fit_models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test.html" class="btn btn-neutral float-right" title="test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

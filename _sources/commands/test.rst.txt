@@ -39,8 +39,7 @@ Output
 
 .. code-block:: text
     
-    [2020-04-13 09:50:58] INFO: GTDB-Tk v1.1.0
-    [2020-04-13 09:50:58] INFO: gtdbtk test --out_dir /tmp/test --cpus 3
-    [2020-04-13 09:50:58] INFO: Using GTDB-Tk reference data version r89: /release89
-    [2020-04-13 09:50:58] INFO: Command: gtdbtk classify_wf --genome_dir /tmp/test/genomes --out_dir /tmp/test/output --cpus 3
-    [2020-04-13 09:52:35] INFO: Test has successfully finished.
+    [2026-04-08 17:05:24] INFO: gTranslate v0.0.2
+    [2026-04-08 17:05:24] INFO: gtranslate test --out_dir run_test_command
+    [2026-04-08 17:05:24] INFO: Command: gtranslate detect_table --genome_dir run_test_command/genomes --out_dir run_test_command/output --cpus 1
+    [2026-04-08 17:06:22] INFO: Test has successfully finished.

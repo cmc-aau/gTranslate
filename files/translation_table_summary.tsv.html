@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Commands &mdash; gTranslate 0.0.2 documentation</title>
+  <title>translation_table_summary.tsv &mdash; gTranslate 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=3cb91acd" />
 
   
-    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/commands/index.html" />
+    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/files/translation_table_summary.tsv.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=e3a6060d"></script>
@@ -41,8 +41,6 @@
 
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="build_features" href="build_features.html" />
-    <link rel="prev" title="FAQ" href="../faq.html" />
  
 </head>
 
@@ -72,15 +70,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="build_features.html">build_features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="detect_table.html">detect_table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fit_models.html">fit_models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generate_plot.html">generate_plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test.html">test</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul>
@@ -102,9 +93,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Commands</li>
+      <li class="breadcrumb-item active">translation_table_summary.tsv</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/commands/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/files/translation_table_summary.tsv.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -112,27 +103,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="commands">
-<span id="id1"></span><h1>Commands<a class="headerlink" href="#commands" title="Link to this heading"></a></h1>
-<p>Below is a list of all gTranslate command line options:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="build_features.html">build_features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="detect_table.html">detect_table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fit_models.html">fit_models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generate_plot.html">generate_plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test.html">test</a></li>
+  <section id="translation-table-summary-tsv">
+<span id="files-translation-table-summary-tsv"></span><h1>translation_table_summary.tsv<a class="headerlink" href="#translation-table-summary-tsv" title="Link to this heading"></a></h1>
+<p>The output of gTranslate is provided in a tab-separated file (typically gtranslate.tsv). This file contains the final taxonomic predictions, the biological features calculated from the sequences, and the specific outputs of the machine learning ensemble.</p>
+<ul class="simple">
+<li><p>user_genome: Unique identifier of the query genome.</p></li>
+<li><p>best_tln_table: The final predicted Genetic Translation Table (GTT). This is the “consensus” choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).</p></li>
+<li><p>coding_density_4: The calculated coding density of the genome assuming the translation table is Table 4.</p></li>
+<li><p>coding_density_11: The calculated coding density assuming the translation table is Table 11 (Standard code).</p></li>
+<li><p>gc_percent: The percentage of Guanine and Cytosine in the genome.</p></li>
+<li><p>n50: N50 of the genome assembly.</p></li>
+<li><p>genome_size: The total length of the genome assembly in base pairs.</p></li>
+<li><p>contig_count: The total number of contigs (fragments) in the user’s genome file.</p></li>
+<li><p>confidence: A score ranging from 0.0 to 1.0 representing the level of agreement across the internal machine learning models. A score of 1.0 indicates that all classifiers in the ensemble (Adaboost, MLP, etc.) predicted the same table.</p></li>
+<li><p>adaboost_pred: The specific GTT prediction made by the AdaBoost classifier.</p></li>
+<li><p>decisiontree_pred: The specific GTT prediction made by the Decision Tree classifier.</p></li>
+<li><p>kneighbors_pred: The specific GTT prediction made by the K-Nearest Neighbors (KNN) classifier.</p></li>
+<li><p>xgb_pred: The specific GTT prediction made by the XGBoost (Extreme Gradient Boosting) classifier.</p></li>
+<li><p>mlp_pred: The specific GTT prediction made by the Multi-Layer Perceptron (Neural Network) classifier.</p></li>
+<li><p>warnings: Flags any unusual features or inconsistencies, such as extreme coding density differences or low confidence scores, that may suggest the prediction should be manually reviewed. “N/A” indicates no issues were detected.</p></li>
 </ul>
+<section id="produced-by">
+<h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../commands/detect_table.html#commands-detect-table"><span class="std std-ref">detect_table</span></a></p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>user_genome best_tln_table  coding_density_4        coding_density_11       gc_percent      n50     genome_size     contig_count    confidence      adaboost_pred   decisiontree_predkneighbors_pred        xgb_pred        mlp_pred        warnings
+GCA_000145705.TT4   4       90.29257        64.14511        25.88353        839615  839615  1       1.0     4       4       4       4       4       N/A
+GCA_027046965.1_TT25        25      94.21967        56.0663 32.96163        50860   854813  32      1.0     25      25      25      25      25      N/A
+GCA_910575315.1_TT11        11      87.75128        87.91231        44.09593        73133   4990987 224     1.0     11      11      11      11      11      N/A
+</pre></div>
 </div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../faq.html" class="btn btn-neutral float-left" title="FAQ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="build_features.html" class="btn btn-neutral float-right" title="build_features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
