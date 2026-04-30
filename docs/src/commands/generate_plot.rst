@@ -20,8 +20,7 @@ Arguments
 Files output
 ------------
 
-
-
+* :ref:`[gtranslate_plot].html <files/gtranslate_plot.html>`
 
 
 Example

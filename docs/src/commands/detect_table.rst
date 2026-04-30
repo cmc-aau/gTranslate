@@ -21,6 +21,7 @@ Files output
 ------------
 
 * :ref:`[prefix].translation_table_summary.tsv <files/translation_table_summary.tsv>`
+* :ref:`[prefix].feature_summary.tsv <files/feature_summary.tsv>`
 * :ref:`[prefix].log <files/gtranslate.log>`
 * :ref:`[prefix].warnings.log <files/gtranslate.warnings.log>`
 
