@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; gTranslate 0.0.2 documentation</title>
+  <title>feature_summary.tsv &mdash; gTranslate 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=3cb91acd" />
 
   
-    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/includes/manually_alias_reference.html" />
+    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/files/feature_summary.tsv.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=e3a6060d"></script>
@@ -94,9 +94,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">feature_summary.tsv</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/includes/manually_alias_reference.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/files/feature_summary.tsv.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -104,13 +104,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the GTDB-Tk conda environment</span>
-conda<span class="w"> </span>activate<span class="w"> </span>gtdbtk-0.0.2
-
-<span class="c1"># Set the environment variable to the directory containing the GTDB-Tk reference data</span>
-conda<span class="w"> </span>env<span class="w"> </span>config<span class="w"> </span>vars<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GTDBTK_DATA_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/unarchived/gtdbtk/data&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
+  <section id="feature-summary-tsv">
+<span id="files-feature-summary-tsv"></span><h1>feature_summary.tsv<a class="headerlink" href="#feature-summary-tsv" title="Link to this heading"></a></h1>
+<p>The tab-delimited file containing the summary of features for each genome in the training dataset.</p>
+<p>The columns in this file are as follows:
+* user_genome ( or genome ID for <code class="docutils literal notranslate"><span class="pre">build_features</span></code>): Unique identifier of the query genome.
+* best_tln_table ( missing for <code class="docutils literal notranslate"><span class="pre">build_features</span></code>): The final predicted Genetic Translation Table (GTT). This is the “consensus” choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).
+* Coding_density_4: gene coding density when predicting genes with Prodigal using translation table 4 or equivalently 25 which reassigned the UGA stop coding to either tryptophan or glycine.
+* Coding_density_11: gene coding density when predicting genes with Prodigal (Hyatt et al., 2010) using translation table 11.
+* Density_Diff: the difference in coding density when using translation table 4/25 or translation table 11, i.e. CD4 – CD11.
+* GC: percentage of guanine (G) and cytosine (C) nucleotides in a genome.
+* Trp_ratio: log-transformed ratio of UGA to UGG codon counts when predicting genes with Prodigal under translation table 4. The log ratio is clipped between -6 and 5 to remove extreme outliers.
+* Trp_magnitude: log-transformed count of all UGA and UGG tryptophan codons when predicting genes with Prodigal under translation table 4.
+* Gly_ratio: log-transformed ratio of UGA codon counts to the total glycine codon counts (i.e. codons GGn) when predicting genes with Prodigal under translation table 4. The log ratio is clipped between -10 and 0 to remove extreme outliers.
+* UGG_density: ratio of UGG tryptophan codons to glycine codons (GGn) when predicting genes with Prodigal under translation table 4.</p>
+<section id="produced-by">
+<h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../commands/build_features.html#commands-build-features"><span class="std std-ref">build_features</span></a></p></li>
+<li><p><a class="reference internal" href="../commands/detect_table.html#commands-detect-table"><span class="std std-ref">detect_table</span></a></p></li>
+</ul>
+</section>
+</section>
 
 
            </div>

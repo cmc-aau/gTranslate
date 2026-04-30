@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bioconda &mdash; gTranslate 0.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=3cb91acd" />
+
+  
+    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/installing/bioconda.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=e3a6060d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/custom.js?v=12edf98b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script defer data-domain="cmc-aau.github.io/gtranslate" src="https://plausible.gtdb.ecogenomic.org/js/script.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-84847737-2');
+    </script>
+
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pip" href="pip.html" />
+    <link rel="prev" title="Installing gTranslate" href="index.html" />
+ 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/gTranslate_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../announcements.html">Announcements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installing gTranslate</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#sources">Sources</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Bioconda</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-install-conda-if-not-already-done">Step 1: Install conda (if not already done)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-create-the-gtdb-tk-environment">Step 2: Create the GTDB-Tk environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-download-and-alias-the-gtdb-tk-reference-data">Step 3: Download and alias the GTDB-Tk reference data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pip.html">pip</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#hardware-requirements">Hardware requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#python-libraries">Python libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#third-party-software">Third-party software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gtranslate-models">gTranslate models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gTranslate</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installing gTranslate</a></li>
+      <li class="breadcrumb-item active">Bioconda</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/installing/bioconda.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bioconda">
+<span id="installing-bioconda"></span><h1>Bioconda<a class="headerlink" href="#bioconda" title="Link to this heading"></a></h1>
+<section id="step-1-install-conda-if-not-already-done">
+<h2>Step 1: Install conda (if not already done)<a class="headerlink" href="#step-1-install-conda-if-not-already-done" title="Link to this heading"></a></h2>
+<p>We strongly recommend using <a class="reference external" href="https://mamba.readthedocs.io/en/latest/installation.html">Mamba</a> (much faster!) over <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>/<a class="reference external" href="https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html">conda</a>, but all will work.</p>
+</section>
+<section id="step-2-create-the-gtdb-tk-environment">
+<h2>Step 2: Create the GTDB-Tk environment<a class="headerlink" href="#step-2-create-the-gtdb-tk-environment" title="Link to this heading"></a></h2>
+<p>It is strongly recommended to create a new conda environment for each version of GTDB-Tk released.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You must always specify the version of GTDB-Tk, as conda may try to install a <strong>very old version (v1.0.2)</strong>.</p>
+</div>
+<p>GTDB-Tk requires third-party packages from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> and <code class="docutils literal notranslate"><span class="pre">bioconda</span></code> channels, make sure to
+specify those channels in that order!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: replace 0.0.2 with the version you wish to install</span>
+
+<span class="c1"># using conda</span>
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtdbtk-0.0.2<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span><span class="nv">gtdbtk</span><span class="o">=</span><span class="m">0</span>.0.2
+
+<span class="c1"># using mamba (alternative)</span>
+mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtdbtk-0.0.2<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span><span class="nv">gtdbtk</span><span class="o">=</span><span class="m">0</span>.0.2
+</pre></div>
+</div>
+</section>
+<section id="step-3-download-and-alias-the-gtdb-tk-reference-data">
+<h2>Step 3: Download and alias the GTDB-Tk reference data<a class="headerlink" href="#step-3-download-and-alias-the-gtdb-tk-reference-data" title="Link to this heading"></a></h2>
+<p>GTDB-Tk requires an environment variable named <code class="docutils literal notranslate"><span class="pre">GTDBTK_DATA_PATH</span></code> to be set to the directory
+containing the unarchived <span class="xref std std-ref">installing#gtdbtk-reference-data</span>.</p>
+<section id="automatically">
+<h3>Automatically<a class="headerlink" href="#automatically" title="Link to this heading"></a></h3>
+<p>The conda package is bundled with a script <code class="docutils literal notranslate"><span class="pre">download-db.sh</span></code> <a class="reference external" href="https://github.com/bioconda/bioconda-recipes/blob/master/recipes/gtdbtk/download-db.sh">(source)</a>
+that will automatically download, and extract the GTDB-Tk reference data. The script will be on the system path so simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>download-db.sh
+</pre></div>
+</div>
+</section>
+<section id="manually">
+<h3>Manually<a class="headerlink" href="#manually" title="Link to this heading"></a></h3>
+<p>You can automatically alias <code class="docutils literal notranslate"><span class="pre">GTDBTK_DATA_PATH</span></code> whenever the environment is activated by
+<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables">setting environment-specific variables</a>, e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the GTDB-Tk conda environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>gtdbtk-0.0.2
+
+<span class="c1"># Set the environment variable to the directory containing the GTDB-Tk reference data</span>
+conda<span class="w"> </span>env<span class="w"> </span>config<span class="w"> </span>vars<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GTDBTK_DATA_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/unarchived/gtdbtk/data&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Installing gTranslate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pip.html" class="btn btn-neutral float-right" title="pip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Pierre-Alain Chaumeil, Aaron Mussig and Donovan Parks.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

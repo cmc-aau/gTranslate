@@ -67,6 +67,7 @@
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../announcements.html">Announcements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Installing gTranslate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
@@ -131,6 +132,36 @@
 <dd><p>File indicating manually specific ground truth for select genomes.</p>
 </dd>
 </dl>
+</section>
+</section>
+<section id="files-output">
+<h2>Files output<a class="headerlink" href="#files-output" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../files/ground_truth_results.tsv.html#files-ground-truth-results-tsv"><span class="std std-ref">[ground_truth_results].tsv</span></a></p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gtranslate<span class="w"> </span>ground_truth<span class="w"> </span>--taxonomy_file<span class="w"> </span>taxonomy_file_r226.tsv.gz<span class="w"> </span>--output_file<span class="w"> </span>ground_truth_results.tsv
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[2026-05-01 01:50:19] INFO: gTranslate v0.0.2
+[2026-05-01 01:50:19] INFO: gtranslate ground_truth --taxonomy_file taxonomy_file_r226.tsv.gz --output_file ground_truth_results.tsv
+[2026-05-01 01:50:19] INFO: Selecting Ground Truth translation tables based on taxonomic classification.
+[2026-05-01 01:50:19] INFO: Determining ground truth for genomes:
+[2026-05-01 01:50:20] INFO:  - determined ground truth for 116,508 genomes
+[2026-05-01 01:50:20] INFO: Table 11: 115,941 (99.51%)
+[2026-05-01 01:50:20] INFO: Table 25: 121 (0.10%)
+[2026-05-01 01:50:20] INFO: Table 4: 445 (0.38%)
+[2026-05-01 01:50:20] INFO: Table UNRESOLVED: 1 (0.00%)
+[2026-05-01 01:50:20] INFO: Done.
+</pre></div>
+</div>
 </section>
 </section>
 </section>

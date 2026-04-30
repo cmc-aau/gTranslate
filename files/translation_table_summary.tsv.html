@@ -67,6 +67,7 @@
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../announcements.html">Announcements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Installing gTranslate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
@@ -106,23 +107,22 @@
   <section id="translation-table-summary-tsv">
 <span id="files-translation-table-summary-tsv"></span><h1>translation_table_summary.tsv<a class="headerlink" href="#translation-table-summary-tsv" title="Link to this heading"></a></h1>
 <p>The output of gTranslate is provided in a tab-separated file (typically gtranslate.tsv). This file contains the final taxonomic predictions, the biological features calculated from the sequences, and the specific outputs of the machine learning ensemble.</p>
-<ul class="simple">
-<li><p>user_genome: Unique identifier of the query genome.</p></li>
-<li><p>best_tln_table: The final predicted Genetic Translation Table (GTT). This is the “consensus” choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).</p></li>
-<li><p>coding_density_4: The calculated coding density of the genome assuming the translation table is Table 4.</p></li>
-<li><p>coding_density_11: The calculated coding density assuming the translation table is Table 11 (Standard code).</p></li>
-<li><p>gc_percent: The percentage of Guanine and Cytosine in the genome.</p></li>
-<li><p>n50: N50 of the genome assembly.</p></li>
-<li><p>genome_size: The total length of the genome assembly in base pairs.</p></li>
-<li><p>contig_count: The total number of contigs (fragments) in the user’s genome file.</p></li>
-<li><p>confidence: A score ranging from 0.0 to 1.0 representing the level of agreement across the internal machine learning models. A score of 1.0 indicates that all classifiers in the ensemble (Adaboost, MLP, etc.) predicted the same table.</p></li>
-<li><p>adaboost_pred: The specific GTT prediction made by the AdaBoost classifier.</p></li>
-<li><p>decisiontree_pred: The specific GTT prediction made by the Decision Tree classifier.</p></li>
-<li><p>kneighbors_pred: The specific GTT prediction made by the K-Nearest Neighbors (KNN) classifier.</p></li>
-<li><p>xgb_pred: The specific GTT prediction made by the XGBoost (Extreme Gradient Boosting) classifier.</p></li>
-<li><p>mlp_pred: The specific GTT prediction made by the Multi-Layer Perceptron (Neural Network) classifier.</p></li>
-<li><p>warnings: Flags any unusual features or inconsistencies, such as extreme coding density differences or low confidence scores, that may suggest the prediction should be manually reviewed. “N/A” indicates no issues were detected.</p></li>
-</ul>
+<p>The columns in this file are as follows:
+* user_genome: Unique identifier of the query genome.
+* best_tln_table: The final predicted Genetic Translation Table (GTT). This is the “consensus” choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).
+* coding_density_4: The calculated coding density of the genome assuming the translation table is Table 4.
+* coding_density_11: The calculated coding density assuming the translation table is Table 11 (Standard code).
+* gc_percent: The percentage of Guanine and Cytosine in the genome.
+* n50: N50 of the genome assembly.
+* genome_size: The total length of the genome assembly in base pairs.
+* contig_count: The total number of contigs (fragments) in the user’s genome file.
+* confidence: A score ranging from 0.0 to 1.0 representing the level of agreement across the internal machine learning models. A score of 1.0 indicates that all classifiers in the ensemble (Adaboost, MLP, etc.) predicted the same table.
+* adaboost_pred: The specific GTT prediction made by the AdaBoost classifier.
+* decisiontree_pred: The specific GTT prediction made by the Decision Tree classifier.
+* kneighbors_pred: The specific GTT prediction made by the K-Nearest Neighbors (KNN) classifier.
+* xgb_pred: The specific GTT prediction made by the XGBoost (Extreme Gradient Boosting) classifier.
+* mlp_pred: The specific GTT prediction made by the Multi-Layer Perceptron (Neural Network) classifier.
+* warnings: Flags any unusual features or inconsistencies, such as extreme coding density differences or low confidence scores, that may suggest the prediction should be manually reviewed. “N/A” indicates no issues were detected.</p>
 <section id="produced-by">
 <h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
 <ul class="simple">

@@ -6,6 +6,7 @@ translation_table_summary.tsv
 
 The output of gTranslate is provided in a tab-separated file (typically gtranslate.tsv). This file contains the final taxonomic predictions, the biological features calculated from the sequences, and the specific outputs of the machine learning ensemble.
 
+The columns in this file are as follows:
 * user_genome: Unique identifier of the query genome.
 * best_tln_table: The final predicted Genetic Translation Table (GTT). This is the "consensus" choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).
 * coding_density_4: The calculated coding density of the genome assuming the translation table is Table 4.

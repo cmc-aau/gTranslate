@@ -69,6 +69,7 @@
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../announcements.html">Announcements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Installing gTranslate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
@@ -79,6 +80,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments">mutually exclusive required arguments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-required-named-arguments">required named arguments</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-optional-arguments">optional arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#files-output">Files output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
 </ul>
@@ -167,6 +174,34 @@ it calculates the specific signatures—like amino acid frequencies and density 
 <dd><p>continue processing if an error occurs on a single genome</p>
 </dd>
 </dl>
+</section>
+</section>
+<section id="files-output">
+<h2>Files output<a class="headerlink" href="#files-output" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../files/feature_summary.tsv.html#files-feature-summary-tsv"><span class="std std-ref">gtranslate_training.feature_summary.tsv</span></a></p></li>
+<li><p><a class="reference internal" href="../files/gtranslate.log.html#files-gtranslate-log"><span class="std std-ref">[prefix].log</span></a></p></li>
+<li><p><a class="reference internal" href="../files/gtranslate.warnings.log.html#files-gtranslate-warnings-log"><span class="std std-ref">[prefix].warnings.log</span></a></p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gtranslate<span class="w"> </span>build_features<span class="w"> </span>--batchfile<span class="w"> </span>1000genomes/5K_batchfile.tsv<span class="w"> </span>--out_dir<span class="w"> </span>features_test<span class="w"> </span>--cpus<span class="w"> </span><span class="m">90</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[2026-04-09 23:09:40] INFO: gTranslate v0.0.2
+[2026-04-09 23:09:40] INFO: gtranslate build_features --batchfile 1000genomes/5K_batchfile.tsv --out_dir features_test --cpus 90
+[2026-04-09 23:09:40] INFO: Generating feature vectors for training models.
+[2026-04-09 23:10:45] TASK: Running Prodigal V2.6.3 to identify genes.
+[2026-04-09 23:36:35] INFO: Completed 5,000 genomes in 25.84 minutes (193.47 genomes/minute).
+[2026-04-09 23:36:37] INFO: Done.
+</pre></div>
+</div>
 </section>
 </section>
 </section>
