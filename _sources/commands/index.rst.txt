@@ -13,4 +13,5 @@ Below is a list of all gTranslate command line options:
    detect_table
    fit_models
    generate_plot
+   ground_truth
    test
