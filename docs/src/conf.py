@@ -91,7 +91,7 @@ html_js_files = [
     'custom.js'
 ]
 
-html_logo = '_static/gTranslate_logo.svg'
+html_logo = '_static/gTranslate_logo_red.svg'
 
 # Sitemap settings
 html_baseurl = 'https://cmc-aau.github.io/gTranslate/'

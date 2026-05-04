@@ -11,7 +11,7 @@
 
 /* Change the visited link colour */
 a:visited, a {
-   color: #578f5d;
+   color: #bf2000;
 }
 .wy-menu-vertical a {
    color: #d9d9d9;
@@ -24,8 +24,8 @@ a:visited, a {
     font-size: 80%;
     line-height: normal;
     background: #e8f3ea;
-    color: #578f5d;
-    border-top: solid 3px #73a579;
+    color: #bf2000;
+    border-top: solid 3px #ED2A02;
     padding: 6px;
     position: relative;
 }
@@ -34,17 +34,17 @@ a:visited, a {
 
 /* Top left background */
 .wy-side-nav-search, .wy-nav-top {
-    background: #578f5d;
+    background: #bf2000;
 }
 
 /* Background when a link is clicked on the left */
 .wy-menu-vertical a:active {
-    background: #578f5d;
+    background: #bf2000;
 }
 
 /* Border of search box */
 .wy-side-nav-search input[type=text] {
-    border-color: #578f5d;
+    border-color: #bf2000;
 }
 
 /* Set the version colour */
@@ -54,7 +54,7 @@ a:visited, a {
 
 /* Set the menu colour */
 .wy-menu-vertical header, .wy-menu-vertical p.caption {
-    color: #578f5d;
+    color: #bf2000;
 }
 
 /* Change the row colour when mouseover */
