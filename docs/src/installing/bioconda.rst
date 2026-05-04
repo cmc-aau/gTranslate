@@ -12,15 +12,10 @@ We strongly recommend using `Mamba <https://mamba.readthedocs.io/en/latest/insta
 Step 2: Create the gTranslate environment
 -----------------------------------------
 
-It is strongly recommended to create a new conda environment for each version of gTranslate-Tk released.
+It is strongly recommended to create a new conda environment for each version of gTranslate released.
 
 
 gTranslate requires third-party packages from the ``conda-forge`` and ``bioconda`` channels, make sure to
 specify those channels in that order!
 
 .. include:: ../includes/install_block.rst
-
-
-
-
-

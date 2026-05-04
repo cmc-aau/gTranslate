@@ -15,15 +15,15 @@
 #                                                                             #
 ###############################################################################
 
-__author__ = 'Pierre-Alain Chaumeil, Aaron Mussig and Donovan Parks'
-__author_email__ = 'p.chaumeil@uq.edu.au'
+__author__ = 'Pierre-Alain Chaumeil and Donovan Parks'
+__author_email__ = 'pch@bio.aau.dk'
 __copyright__ = 'Copyright 2025'
 __credits__ = ['Pierre Chaumeil']
 __description__ = 'software tool designed to accurately identify the genetic translation table (GTT) used in prokaryotic organisms.'
 __email__ = 'uqpchaum@uq.edu.au'
 __license__ = 'GPL3'
-__maintainer__ = 'Pierre-Alain Chaumeil, Aaron Mussig and Donovan Parks'
-__maintainer_email__ = 'donovan.parks@gmail.com'
+__maintainer__ = 'Pierre-Alain Chaumeil and Donovan Parks'
+__maintainer_email__ = 'pch@bio.aau.dk'
 __name__ = 'gtranslate'
 __python_requires__ = '>=3.12'
 __status__ = 'Production'
