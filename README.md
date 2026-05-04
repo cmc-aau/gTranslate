@@ -9,7 +9,24 @@
 
 ## Installation
 
-... TBD ...
+gTranslate requires **Python >= 3.12** and **Prodigal >= 2.6.2** on your system path.
+
+### Option 1: Bioconda (Recommended)
+We recommend using **Mamba** for a faster setup:
+```bash
+conda create -n gtranslate -c conda-forge -c bioconda gtdb-gtranslate
+conda activate gtranslate
+```
+
+### Option 2: pip
+It is recommended to use a [virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/):
+```bash
+# Install
+python -m pip install -i https://test.pypi.org/simple/ gtdb-gtranslate
+
+# Upgrade
+python -m pip install -i https://test.pypi.org/simple/ --upgrade gtdb-gtranslate
+```
 
 ## Usage
 

@@ -100,7 +100,6 @@ sitemap_url_scheme = "{link}"
 
 # Write dynamic install instructions with correct version
 install_block_path = os.path.join(os.path.dirname(__file__), 'includes', 'install_block.rst')
-manually_alias_reference = os.path.join(os.path.dirname(__file__), 'includes', 'manually_alias_reference.rst')
 os.makedirs(os.path.dirname(install_block_path), exist_ok=True)
 
 with open(install_block_path, 'w') as f:
@@ -110,19 +109,9 @@ with open(install_block_path, 'w') as f:
     # NOTE: replace {release} with the version you wish to install
 
     # using conda
-    conda create -n gtdbtk-{release} -c conda-forge -c bioconda gtdbtk={release}
+    conda create -n gtranslate-{release} -c conda-forge -c bioconda gtdb-gtranslate={release}
 
     # using mamba (alternative)
-    mamba create -n gtdbtk-{release} -c conda-forge -c bioconda gtdbtk={release}
+    mamba create -n gtranslate-{release} -c conda-forge -c bioconda gtdb-gtranslate={release}
 """)
 
-with open(manually_alias_reference, 'a') as f:
-    f.write(f"""\
-.. code-block:: bash
-
-    # Activate the GTDB-Tk conda environment
-    conda activate gtdbtk-{release}
-
-    # Set the environment variable to the directory containing the GTDB-Tk reference data
-    conda env config vars set GTDBTK_DATA_PATH="/path/to/unarchived/gtdbtk/data";
-""")

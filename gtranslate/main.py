@@ -76,7 +76,7 @@ class OptionsParser(object):
 
         Raises
         ------
-        GTDBTkExit
+        GTranslateExit
             If the genome identifier contains illegal characters.
         """
         if len(genome_id) == 0:
@@ -330,7 +330,7 @@ class OptionsParser(object):
         return True
 
     def check_install(self,options):
-        """ Verify all GTDB-Tk data files are present.
+        """ Verify all gTranslate data files are present.
 
         Raises
         ------
