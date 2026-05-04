@@ -27,7 +27,7 @@ Running gTranslate
 
 Citing gTranslate
 =================
-We encourage you to cite GTDB-Tk and the third-party dependencies as described in :ref:`references`.
+We encourage you to cite gTranslate and the third-party dependencies as described in :ref:`references`.
 
 
 .. toctree::

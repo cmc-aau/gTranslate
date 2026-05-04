@@ -73,8 +73,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#sources">Sources</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Bioconda</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#step-1-install-conda-if-not-already-done">Step 1: Install conda (if not already done)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#step-2-create-the-gtdb-tk-environment">Step 2: Create the GTDB-Tk environment</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#step-3-download-and-alias-the-gtdb-tk-reference-data">Step 3: Download and alias the GTDB-Tk reference data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-create-the-gtranslate-environment">Step 2: Create the gTranslate environment</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pip.html">pip</a></li>
@@ -129,49 +128,20 @@
 <h2>Step 1: Install conda (if not already done)<a class="headerlink" href="#step-1-install-conda-if-not-already-done" title="Link to this heading"></a></h2>
 <p>We strongly recommend using <a class="reference external" href="https://mamba.readthedocs.io/en/latest/installation.html">Mamba</a> (much faster!) over <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>/<a class="reference external" href="https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html">conda</a>, but all will work.</p>
 </section>
-<section id="step-2-create-the-gtdb-tk-environment">
-<h2>Step 2: Create the GTDB-Tk environment<a class="headerlink" href="#step-2-create-the-gtdb-tk-environment" title="Link to this heading"></a></h2>
-<p>It is strongly recommended to create a new conda environment for each version of GTDB-Tk released.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>You must always specify the version of GTDB-Tk, as conda may try to install a <strong>very old version (v1.0.2)</strong>.</p>
-</div>
-<p>GTDB-Tk requires third-party packages from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> and <code class="docutils literal notranslate"><span class="pre">bioconda</span></code> channels, make sure to
+<section id="step-2-create-the-gtranslate-environment">
+<h2>Step 2: Create the gTranslate environment<a class="headerlink" href="#step-2-create-the-gtranslate-environment" title="Link to this heading"></a></h2>
+<p>It is strongly recommended to create a new conda environment for each version of gTranslate-Tk released.</p>
+<p>gTranslate requires third-party packages from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> and <code class="docutils literal notranslate"><span class="pre">bioconda</span></code> channels, make sure to
 specify those channels in that order!</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: replace 0.0.2 with the version you wish to install</span>
 
 <span class="c1"># using conda</span>
-conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtdbtk-0.0.2<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span><span class="nv">gtdbtk</span><span class="o">=</span><span class="m">0</span>.0.2
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.2<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.2
 
 <span class="c1"># using mamba (alternative)</span>
-mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtdbtk-0.0.2<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span><span class="nv">gtdbtk</span><span class="o">=</span><span class="m">0</span>.0.2
+mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.2<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.2
 </pre></div>
 </div>
-</section>
-<section id="step-3-download-and-alias-the-gtdb-tk-reference-data">
-<h2>Step 3: Download and alias the GTDB-Tk reference data<a class="headerlink" href="#step-3-download-and-alias-the-gtdb-tk-reference-data" title="Link to this heading"></a></h2>
-<p>GTDB-Tk requires an environment variable named <code class="docutils literal notranslate"><span class="pre">GTDBTK_DATA_PATH</span></code> to be set to the directory
-containing the unarchived <span class="xref std std-ref">installing#gtdbtk-reference-data</span>.</p>
-<section id="automatically">
-<h3>Automatically<a class="headerlink" href="#automatically" title="Link to this heading"></a></h3>
-<p>The conda package is bundled with a script <code class="docutils literal notranslate"><span class="pre">download-db.sh</span></code> <a class="reference external" href="https://github.com/bioconda/bioconda-recipes/blob/master/recipes/gtdbtk/download-db.sh">(source)</a>
-that will automatically download, and extract the GTDB-Tk reference data. The script will be on the system path so simply run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>download-db.sh
-</pre></div>
-</div>
-</section>
-<section id="manually">
-<h3>Manually<a class="headerlink" href="#manually" title="Link to this heading"></a></h3>
-<p>You can automatically alias <code class="docutils literal notranslate"><span class="pre">GTDBTK_DATA_PATH</span></code> whenever the environment is activated by
-<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables">setting environment-specific variables</a>, e.g.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the GTDB-Tk conda environment</span>
-conda<span class="w"> </span>activate<span class="w"> </span>gtdbtk-0.0.2
-
-<span class="c1"># Set the environment variable to the directory containing the GTDB-Tk reference data</span>
-conda<span class="w"> </span>env<span class="w"> </span>config<span class="w"> </span>vars<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GTDBTK_DATA_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/unarchived/gtdbtk/data&quot;</span><span class="p">;</span>
-</pre></div>
-</div>
-</section>
 </section>
 </section>
 

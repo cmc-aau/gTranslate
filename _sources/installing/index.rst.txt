@@ -27,7 +27,7 @@ Hardware requirements
 Python libraries
 ----------------
 
-GTDB-Tk is designed for Python >=3.12 and requires the following libraries, which will be automatically installed:
+gTranslate is designed for Python >=3.12 and requires the following libraries, which will be automatically installed:
 
 .. list-table::
    :widths: 10 10 80
@@ -78,7 +78,7 @@ Please cite these libraries if you use gTranslate in your work.
 Third-party software
 --------------------
 
-GTDB-Tk makes use of the following 3rd party dependencies and assumes they are on your system path:
+gTranslate makes use of the following 3rd party dependencies and assumes they are on your system path:
 
 .. tip::
    The :ref:`commands/check_install` command will verify that all of the programs are on the path.
