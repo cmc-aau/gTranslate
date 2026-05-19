@@ -127,3 +127,5 @@ with open(manually_alias_reference, 'a') as f:
     conda env config vars set GTRANSLATE_MODEL_PARTH="/path/to/unarchived/gtranslate/models";
 """)
 
+html_title = f"{project} v{version}"
+
