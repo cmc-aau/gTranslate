@@ -1,8 +1,9 @@
 {% extends "!layout.html" %}
+
+{# 1. Keep your existing analytics tracking script overrides #}
 {% block linktags %}
     <script defer data-domain="cmc-aau.github.io/gtranslate" src="https://plausible.gtdb.ecogenomic.org/js/script.js"></script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -17,4 +18,15 @@
     </script>
 
 {{ super() }}
+{% endblock %}
+
+{# 2. Add the sidebar override block to force the version div underneath the SVG logo #}
+{% block sidebartitle %}
+  {{ super() }}
+
+  {% if theme_display_version and version %}
+    <div class="version">
+      {{ version }}
+    </div>
+  {% endif %}
 {% endblock %}
