@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pip &mdash; gTranslate 0.0.3 documentation</title>
+  <title>pip &mdash; gTranslate 0.0.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/installing/pip.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=47de8214"></script>
+      <script src="../_static/documentation_options.js?v=8c5712d9"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -75,6 +75,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">pip</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#step-1-install-third-party-dependencies">Step 1: Install third-party dependencies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#step-2-install-gtranslate-via-pip">Step 2: Install gTranslate via pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-download-and-alias-the-gtranslate-models">Step 3: Download and alias the gTranslate models</a></li>
 </ul>
 </li>
 </ul>
@@ -132,14 +133,23 @@
 <h2>Step 2: Install gTranslate via pip<a class="headerlink" href="#step-2-install-gtranslate-via-pip" title="Link to this heading"></a></h2>
 <p>Note: It is strongly recommended to create a <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">virtual environment</a>
 for each version of gTranslate installed.</p>
-<p>Once the third-party dependencies have been installed, install gTranslate via <a href="#id1"><span class="problematic" id="id2">`pip https://test.pypi.org/project/gtdb-gtranslate/`_</span></a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>gtdb-gtranslate
+<p>Once the third-party dependencies have been installed, install gTranslate via <a href="#id1"><span class="problematic" id="id2">`pip https://pypi.org/project/gtdb-gtranslate/`_</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>gtdb-gtranslate
 </pre></div>
 </div>
 <p>Alternatively, if you have a previously installed gTranslate, you can upgrade the latest version:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>--upgrade
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>gtdb-gtranslate
 </pre></div>
 </div>
+</section>
+<section id="step-3-download-and-alias-the-gtranslate-models">
+<h2>Step 3: Download and alias the gTranslate models<a class="headerlink" href="#step-3-download-and-alias-the-gtranslate-models" title="Link to this heading"></a></h2>
+<p>gTranslate accept both an environment variable named <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> to be set to the directory
+containing the models or accept a flag called <cite>–custom_model_path</cite> that points to the directory containing the models.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">GTRANSLATE_MODEL_PATH</span><span class="o">=</span>/path/to/models/
+</pre></div>
+</div>
+<p>You can permanently save this variable as described <a class="reference external" href="https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path">here</a>.</p>
 </section>
 </section>
 

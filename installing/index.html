@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installing gTranslate &mdash; gTranslate 0.0.3 documentation</title>
+  <title>Installing gTranslate &mdash; gTranslate 0.0.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/installing/index.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=47de8214"></script>
+      <script src="../_static/documentation_options.js?v=8c5712d9"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -169,7 +169,19 @@ If you are unsure which one to choose, Bioconda is generally the easiest.</p>
 </section>
 <section id="gtranslate-models">
 <span id="installing-gtranslate-models"></span><h2>gTranslate models<a class="headerlink" href="#gtranslate-models" title="Link to this heading"></a></h2>
-<p>Currently , gTranslate models are provided as part of gTranslate package.</p>
+<p>Due to size limit, most of the models are available through a separate download.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://data.ace.uq.edu.au/public/to/finalise/gtranslate_models/gtranslate_models.tar.gz
+wget<span class="w"> </span>https://data.gtdb.ecogenomic.org/public/to/finalise/gtranslate_models/gtranslate_models.tar.gz<span class="w"> </span><span class="o">(</span><span class="w"> </span>mirror<span class="w"> </span><span class="k">for</span><span class="w"> </span>Australia<span class="o">)</span>
+tar<span class="w"> </span>xvzf<span class="w"> </span>gtranslate_models.tar.gz
+</pre></div>
+</div>
+<p><strong>Alias the gTranslate models:</strong></p>
+<p>gTranslate requires an environment variable named <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> to be set to the directory
+containing the unarchived reference data. This is documented under:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="pip.html#installing-pip"><span class="std std-ref">pip installation</span></a></p></li>
+<li><p><a class="reference internal" href="bioconda.html#installing-bioconda"><span class="std std-ref">Bioconda installation</span></a></p></li>
+</ul>
 </section>
 </section>
 
