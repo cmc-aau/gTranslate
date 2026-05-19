@@ -197,8 +197,6 @@ class Prodigal(object):
                 temp_df['Gly_ratio'] = [max(-10.0, min(0.0, raw_gly_ratio))]
 
                 temp_df['UGG_density'] = table_trp_counts[4]['UGG'] / (table_trp_counts[4]['GLY'])
-
-                # predict best translation table
                 predictor = TTPredictor(custom_model_path)
 
                 best_translation_table,pred_confidence,pred_warnings,ensemble_preds,feature_vector = predictor.predict_translation_table(temp_df)
@@ -347,6 +345,7 @@ class Prodigal(object):
         self.output_dir = output_dir
 
         make_sure_path_exists(self.output_dir)
+
 
         progress_func = None
         if self.verbose:

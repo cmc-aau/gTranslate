@@ -22,6 +22,8 @@ import shutil
 import subprocess
 
 from gtranslate.biolib_lite.prodigal_runner import Prodigal as ProdigalRunner
+from gtranslate.classifiers.ensemble_predictor import TTPredictor
+from gtranslate.config.common import CONFIG
 from gtranslate.config.output import CHECKSUM_SUFFIX
 from gtranslate.exceptions import ProdigalException
 from gtranslate.files.prodigal.tln_table import TlnTableFile
@@ -214,9 +216,13 @@ class Prodigal(object):
 
         if custom_model_path:
             self.logger.warning(f"Custom model path provided. Overriding default models with custom models from {custom_model_path}.")
+        else:
+            self.logger.info(f"Use default models from {CONFIG.ENV_MODEL_PATH}.")
+
+
 
         for genome_id, file_path in genomic_files.items():
-            worker_queue.put((genome_id, file_path, custom_model_path))
+            worker_queue.put((genome_id, file_path,custom_model_path))
 
         for _ in range(self.threads):
             worker_queue.put(None)

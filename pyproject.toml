@@ -14,7 +14,7 @@ requires-python = ">=3.12"
 license = "GPL-3.0-only"
 
 authors = [
-  {name = "Pierre-Alain Chaumeil", email = "pch@bio.aau.dk"},
+  {name = "Pierre-Alain Chaumeil"},
   {name = "Donovan Parks"}
 ]
 

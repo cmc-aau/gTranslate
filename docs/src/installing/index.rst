@@ -103,7 +103,21 @@ Please cite these tools if you use gTranslate in your work.
 gTranslate models
 -----------------
 
-Currently , gTranslate models are provided as part of gTranslate package.
+Due to size limit, most of the models are available through a separate download.
 
+.. code-block:: bash
+
+    wget https://data.ace.uq.edu.au/public/to/finalise/gtranslate_models/gtranslate_models.tar.gz
+    wget https://data.gtdb.ecogenomic.org/public/to/finalise/gtranslate_models/gtranslate_models.tar.gz ( mirror for Australia)
+    tar xvzf gtranslate_models.tar.gz
+
+
+**Alias the gTranslate models:**
+
+gTranslate requires an environment variable named ``GTRANSLATE_MODEL_PATH`` to be set to the directory
+containing the unarchived reference data. This is documented under:
+
+- :ref:`pip installation <installing/pip>`
+- :ref:`Bioconda installation <installing/bioconda>`
 
 

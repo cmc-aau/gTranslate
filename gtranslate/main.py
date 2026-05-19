@@ -181,6 +181,15 @@ class OptionsParser(object):
                                                        options.extension)
 
         table_predictor = TablePredictor(options.cpus,options.custom_model_path)
+
+        if not options.custom_model_path and not os.getenv('GTRANSLATE_MODEL_PATH'):
+            self.logger.error(
+                "Configuration Error: No model path specified.\n"
+                "Please provide a path using '--custom_model_path' or set the "
+                "'GTRANSLATE_MODEL_PATH' environment variable."
+            )
+            sys.exit(1)
+
         reports = table_predictor.predict(genomes,
                          options.out_dir,
                          options.prefix,

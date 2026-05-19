@@ -103,7 +103,7 @@ def __manual_gt_file(group):
 
 def __custom_model_path(group):
     group.add_argument('--custom_model_path', type=str, default=None,
-                       help="Path to file containing custom models.")
+                       help="Path to file containing custom models. if unset, gTranslate will use GTRANSLATE_MODEL_PATH")
 
 
 def get_main_parser():

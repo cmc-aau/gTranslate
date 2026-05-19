@@ -44,7 +44,6 @@ def print_help():
     ground_truth   -> Determine the ground truth for genomes based on their taxonomic classification.
     build_features -> Generate feature vectors for training models.
     fit_models     -> Train models based on the feature vector tables.
-    training_wf    -> Run the full training workflow in one command ( ground_truth -> build_features -> fit_models ).
 
   Use: gtranslate <command> -h for command specific help 
     ''' % __version__)
