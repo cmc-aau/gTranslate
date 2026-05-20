@@ -1,8 +1,9 @@
 {% extends "!layout.html" %}
+
+{# 1. Your existing analytics tracking script overrides #}
 {% block linktags %}
     <script defer data-domain="cmc-aau.github.io/gtranslate" src="https://plausible.gtdb.ecogenomic.org/js/script.js"></script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -17,4 +18,16 @@
     </script>
 
 {{ super() }}
+{% endblock %}
+
+{# 2. Inject the version block directly above the search bar #}
+{% block searchbox %}
+  {% if theme_display_version and version %}
+    <div class="version" style="text-align: center; margin-top: 10px; margin-bottom: 10px; font-weight: bold;">
+      v{{ version }}
+    </div>
+  {% endif %}
+
+  {# This renders the actual search bar right after our version div #}
+  {{ super() }}
 {% endblock %}
