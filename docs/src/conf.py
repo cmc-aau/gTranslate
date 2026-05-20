@@ -34,7 +34,8 @@ extensions = ['sphinxarg.ext', 'sphinx.ext.napoleon', 'sphinx.ext.autodoc', 'lin
               'myst_parser', 'sphinx_sitemap', 'nbsphinx','matplotlib.sphinxext.plot_directive']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+current_config_dir = os.path.dirname(os.path.abspath(__file__))
+templates_path = [os.path.join(current_config_dir, '_templates')]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
