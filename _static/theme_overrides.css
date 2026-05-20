@@ -61,3 +61,14 @@ a:visited, a {
 .row-even:hover td, .row-odd:hover td {
     background-color: #e5e5e5 !important;
 }
+
+/* Dynamically injected layout fix to display version when logo_only is True */
+.wy-side-nav-search > a::after {
+    content: "v0.0.4";
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 90%;
+    font-weight: bold;
+    color: #bf2000;
+}
