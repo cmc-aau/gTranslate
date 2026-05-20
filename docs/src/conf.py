@@ -34,8 +34,7 @@ extensions = ['sphinxarg.ext', 'sphinx.ext.napoleon', 'sphinx.ext.autodoc', 'lin
               'myst_parser', 'sphinx_sitemap', 'nbsphinx','matplotlib.sphinxext.plot_directive']
 
 # Add any paths that contain templates here, relative to this directory.
-current_config_dir = os.path.dirname(os.path.abspath(__file__))
-templates_path = [os.path.join(current_config_dir, '_templates')]
+templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -102,6 +101,7 @@ sitemap_url_scheme = "{link}"
 # Write dynamic install instructions with correct version
 install_block_path = os.path.join(os.path.dirname(__file__), 'includes', 'install_block.rst')
 manually_alias_reference = os.path.join(os.path.dirname(__file__), 'includes', 'manually_alias_reference.rst')
+css_override_path = os.path.join(os.path.dirname(__file__), '_static', 'theme_overrides.css')
 os.makedirs(os.path.dirname(install_block_path), exist_ok=True)
 
 with open(install_block_path, 'w') as f:
@@ -128,5 +128,19 @@ with open(manually_alias_reference, 'a') as f:
     conda env config vars set GTRANSLATE_MODEL_PARTH="/path/to/unarchived/gtranslate/models";
 """)
 
-html_title = f"{project} v{version}"
+if os.path.exists(css_override_path):
+    with open(css_override_path, 'a') as f:
+        f.write(f"""\
+
+/* Dynamically injected layout fix to display version when logo_only is True */
+.wy-side-nav-search > a::after {{
+    content: "v{release}";
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 90%;
+    font-weight: bold;
+    color: #bf2000;
+}}
+""")
 
