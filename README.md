@@ -3,7 +3,7 @@
 [![PyPI](https://img.shields.io/pypi/v/gtdb-gtranslate.svg)](https://pypi.python.org/pypi/gtdb-gtranslate)
 [![PyPI Downloads](https://pepy.tech/badge/gtdb-gtranslate)](https://pepy.tech/project/gtdb-gtranslate)
 [![Bioconda](https://img.shields.io/conda/vn/bioconda/gtdb-gtranslate.svg?color=43b02a)](https://anaconda.org/bioconda/gtdb-gtranslate)
-#[![BioConda Downloads](https://img.shields.io/conda/dn/bioconda/gtdb-gtranslate.svg?style=flag&label=downloads&color=43b02a)](https://anaconda.org/bioconda/gtdb-gtranslate)
+[![BioConda Downloads](https://img.shields.io/conda/dn/bioconda/gtdb-gtranslate.svg?style=flag&label=downloads&color=43b02a)](https://anaconda.org/bioconda/gtdb-gtranslate)
 
 **gTranslate** is a machine learning-based command-line tool for predicting the translation table (TT) used by prokaryotic genomes. By analyzing specific sequence features — such as coding density differences, Trp ratios, and Gly ratios — `gTranslate` can accurately distinguish between the genetic codes associated with reassignment of the UGA stop codon, i.e. translation tables 11 (standard prokaryotic code), 4 (UGA=Trp), and 25 (UGA=Gly).
 
