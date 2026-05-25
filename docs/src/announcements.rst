@@ -4,8 +4,8 @@ Announcements
 
 
 
-gTranslate 0.0.4 in progress
-----------------------------
+gTranslate 0.0.4
+----------------
 
 *May, 2026*
 

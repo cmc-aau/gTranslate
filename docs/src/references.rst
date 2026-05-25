@@ -29,4 +29,22 @@ References
      - Harris, C.R., Millman, K.J., van der Walt, S.J. et al. Array programming with NumPy. Nature 585, 357–362 (2020). DOI: `0.1038/s41586-020-2649-2 <https://doi.org/10.1038/s41586-020-2649-2>`_
    * - `tqdm <https://github.com/tqdm/tqdm>`_
      - DOI: `10.5281/zenodo.595120 <https://doi.org/10.5281/zenodo.595120>`_
+   * - `Pandas <https://pandas.pydata.org/>`_
+     - McKinney W. 2010. Data Structures for Statistical Computing in Python. Proceedings of the 9th Python in Science Conference, 51-56.
+   * - `scikit-learn <https://scikit-learn.org/stable/>`_
+     - Pedregosa F, et al. 2011. Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12, 2825-2830.
+   * - `joblib <https://joblib.readthedocs.io/en/latest/>`_
+     - Joblib: https://joblib.readthedocs.io/en/latest/
+   * - `scipy <https://www.scipy.org/>`_
+     - Virtanen P, et al. 2020. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272 (2020). DOI: `10.1038/s41592-019-0686-2 <https://doi.org/10.1038/s41592-019-0686-2>`_
+   * - `mlxtend <http://rasbt.github.io/mlxtend/>`_
+     - Raschka S. 2018. MLxtend: Providing machine learning and data science utilities and extensions to Python's scientific computing stack. Journal of Open Source Software, 3(24), 638, https://doi.org/10.21105/joss.00638
+   * - `plotly <https://plotly.com/>`_
+     - Plotly Technologies Inc. 2015. Collaborative data science. Montréal, QC: Plotly Technologies Inc. https://plot.ly
+   * - `xgboost <https://xgboost.readthedocs.io/en/stable/>`_
+     - Chen T, et al. 2016. XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794. DOI: `10.1145/2939672.2939785 <https://doi.org/10.1145/2939672.2939785>`_
+   * - `lightgbm <https://lightgbm.readthedocs.io/en/latest/>`_
+     - Ke G, et al. 2017. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. Advances in Neural Information Processing Systems, 30, 3146–3154.
+   * - `requests <https://docs.python-requests.org/en/latest/>`_
+     - Reitz K. and Kenneth Reitz. 2023. Requests: HTTP for Humans. https://docs.python-requests.org/en/latest/
 

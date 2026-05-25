@@ -3,8 +3,6 @@
 Installing gTranslate
 =====================
 
-IN PROGRESS
-
 gTranslate is available through multiple sources, you only need to choose one.
 If you are unsure which one to choose, Bioconda is generally the easiest.
 
@@ -54,7 +52,7 @@ gTranslate is designed for Python >=3.12 and requires the following libraries, w
    * - `scipy <https://www.scipy.org/>`_
      - >= 1.12.0
      - Virtanen P, et al. 2020. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272 (2020). DOI: `10.1038/s41592-019-0686-2 <https://doi.org/10.1038/s41592-019-0686-2>`_
-   * -`mlxtend <http://rasbt.github.io/mlxtend/>`_
+   * - `mlxtend <http://rasbt.github.io/mlxtend/>`_
      - >= 0.22.0
      - Raschka S. 2018. MLxtend: Providing machine learning and data science utilities and extensions to Python's scientific computing stack. Journal of Open Source Software, 3(24), 638, https://doi.org/10.21105/joss.00638
    * - `plotly <https://plotly.com/>`_
@@ -100,24 +98,42 @@ Please cite these tools if you use gTranslate in your work.
 
 .. _installing#gtranslate-models:
 
-gTranslate models
+gTranslate Models
 -----------------
 
-Due to size limit, most of the models are available through a separate download.
+Due to file size limits, most of the gTranslate models (including the R220 and R232 classifiers) are provided as a separate download.
+
+Downloading the Models
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+We provide three mirrors for downloading the classifiers. For optimal speeds, choose the mirror geographically closest to you:
+
+* **Europe (GTDB Main):** https://data.gtdb.aau.ecogenomic.org/tools/gtranslate/
+* **Australia (UQ Nectar):** https://data.gtdb.ecogenomic.org/tools/gtranslate/
+* **Australia (UQ ACE):** https://data.ace.uq.edu.au/public/gtdb/tools/gtranslate/
+
+You can download and extract the archive directly from the command line. Choose **one** of the following commands based on your preferred mirror:
 
 .. code-block:: bash
 
-    wget https://data.ace.uq.edu.au/public/to/finalise/gtranslate_models/gtranslate_models.tar.gz
-    wget https://data.gtdb.ecogenomic.org/public/to/finalise/gtranslate_models/gtranslate_models.tar.gz ( mirror for Australia)
+    # Download from GTDB (Australia)
+    wget https://data.gtdb.ecogenomic.org/tools/gtranslate/gtranslate_models.tar.gz
+
+    # OR Download from Aalborg University (Europe)
+    # wget https://data.gtdb.aau.ecogenomic.org/tools/gtranslate/gtranslate_models.tar.gz
+
+    # Extract the downloaded archive
     tar xvzf gtranslate_models.tar.gz
 
+Configuring the Model Path
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Alias the gTranslate models:**
+gTranslate requires the ``GTRANSLATE_MODEL_PATH`` environment variable to be set to the directory containing the unarchived reference data.
 
-gTranslate requires an environment variable named ``GTRANSLATE_MODEL_PATH`` to be set to the directory
-containing the unarchived reference data. This is documented under:
+For detailed instructions on setting this variable, please refer to the documentation for your specific setup:
 
-- :ref:`pip installation <installing/pip>`
-- :ref:`Bioconda installation <installing/bioconda>`
+* :ref:`pip installation <installing/pip>`
+* :ref:`Bioconda installation <installing/bioconda>`
 
 

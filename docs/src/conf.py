@@ -101,7 +101,7 @@ sitemap_url_scheme = "{link}"
 
 # Write dynamic install instructions with correct version
 install_block_path = os.path.join(os.path.dirname(__file__), 'includes', 'install_block.rst')
-manually_alias_reference = os.path.join(os.path.dirname(__file__), 'includes', 'manually_alias_reference.rst')
+manually_alias_models = os.path.join(os.path.dirname(__file__), 'includes', 'manually_alias_models.rst')
 css_override_path = os.path.join(os.path.dirname(__file__), '_static', 'theme_overrides.css')
 os.makedirs(os.path.dirname(install_block_path), exist_ok=True)
 
@@ -118,7 +118,7 @@ with open(install_block_path, 'w') as f:
     mamba create -n gtranslate-{release} -c conda-forge -c bioconda gtdb-gtranslate={release}
 """)
 
-with open(manually_alias_reference, 'a') as f:
+with open(manually_alias_models, 'a') as f:
     f.write(f"""\
 .. code-block:: bash
 
