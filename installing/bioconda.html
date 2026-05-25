@@ -83,7 +83,7 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#hardware-requirements">Hardware requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#python-libraries">Python libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#third-party-software">Third-party software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#gtranslate-models">gTranslate models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#gtranslate-models">gTranslate Models</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -150,6 +150,13 @@ mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </
 containing the models or accept a flag called <cite>–custom_model_path</cite> that points to the directory containing the models.</p>
 <p>You can automatically alias <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> whenever the environment is activated by
 <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables">setting environment-specific variables</a>, e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the gTranslate conda environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>gtdb-gtranslate-0.0.4
+
+<span class="c1"># Set the environment variable to the directory containing the gTranslate model classifiers</span>
+conda<span class="w"> </span>env<span class="w"> </span>config<span class="w"> </span>vars<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GTRANSLATE_MODEL_PARTH</span><span class="o">=</span><span class="s2">&quot;/path/to/unarchived/gtranslate/models&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
 </section>
 </section>
 

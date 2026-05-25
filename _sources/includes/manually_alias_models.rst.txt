@@ -1,0 +1,7 @@
+.. code-block:: bash
+
+    # Activate the gTranslate conda environment
+    conda activate gtdb-gtranslate-0.0.4
+
+    # Set the environment variable to the directory containing the gTranslate model classifiers
+    conda env config vars set GTRANSLATE_MODEL_PARTH="/path/to/unarchived/gtranslate/models";
