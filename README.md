@@ -12,6 +12,11 @@
 * **Automated Table Detection:** Rapidly predict the correct translation table for a single genome or large batches of genomes.
 * **Interactive Visualizations:** Generate dynamic HTML dashboards to explore the feature space used by the classifiers.
 
+## Documentation
+
+Documentation for gTranslate can be found [here](https://cmc-aau.github.io/gTranslate/).
+
+
 ## Installation
 
 gTranslate requires **Python >= 3.12** and **Prodigal >= 2.6.2** on your system path.
