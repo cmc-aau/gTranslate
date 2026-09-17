@@ -16,28 +16,6 @@
 
 Documentation for gTranslate can be found [here](https://cmc-aau.github.io/gTranslate/).
 
-
-## Installation
-
-gTranslate requires **Python >= 3.12** and **Prodigal >= 2.6.2** on your system path.
-
-### Option 1: Bioconda (Recommended)
-We recommend using **Mamba** for a faster setup:
-```bash
-conda create -n gtranslate -c conda-forge -c bioconda gtdb-gtranslate
-conda activate gtranslate
-```
-
-### Option 2: pip
-It is recommended to use a [virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/):
-```bash
-# Install
-python -m pip install gtdb-gtranslate
-
-# Upgrade
-python -m pip install --upgrade gtdb-gtranslate
-```
-
 ## Usage
 
 gTranslate is operated via two subcommands: `detect_table` and `generate_plot`.
