@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="build_features.html">build_features</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">detect_table</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#arguments">Arguments</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments">mutually exclusive required arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-required-named-arguments">required named arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-optional-arguments">optional arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gtranslate-detect_table-mutually-exclusive-required-arguments">mutually exclusive required arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gtranslate-detect_table-required-named-arguments">required named arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gtranslate-detect_table-optional-arguments">optional arguments</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#files-output">Files output</a></li>
@@ -136,7 +136,7 @@
 It is used to predict the translation table (TT) used by prokaryotic genomes. By analyzing specific sequence features — such as coding density differences, Trp ratios, and Gly ratios — <cite>gTranslate</cite> can accurately distinguish between the genetic codes associated with reassignment of the UGA stop codon, i.e. translation tables 11 (standard prokaryotic code), 4 (UGA=Trp), and 25 (UGA=Gly).</p>
 <section id="arguments">
 <h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">gtranslate</span> <span class="n">detect_table</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+<div class="highlight-default notranslate" id="gtranslate-detect_table"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">gtranslate</span> <span class="n">detect_table</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
                                <span class="p">(</span><span class="o">--</span><span class="n">genome_dir</span> <span class="n">GENOME_DIR</span> <span class="o">|</span> <span class="o">--</span><span class="n">batchfile</span> <span class="n">BATCHFILE</span><span class="p">)</span>
                                <span class="o">--</span><span class="n">out_dir</span> <span class="n">OUT_DIR</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="n">EXTENSION</span><span class="p">]</span>
                                <span class="p">[</span><span class="o">--</span><span class="n">tmpdir</span> <span class="n">TMPDIR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cpus</span> <span class="n">CPUS</span><span class="p">]</span>
@@ -145,8 +145,8 @@ It is used to predict the translation table (TT) used by prokaryotic genomes. By
                                <span class="p">[</span><span class="o">--</span><span class="n">force</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments">
-<h3>mutually exclusive required arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments" title="Link to this heading"></a></h3>
+<section id="gtranslate-detect_table-mutually-exclusive-required-arguments">
+<span id="gtranslate.cli-get_main_parser-mutually-exclusive-required-arguments"></span><h3>mutually exclusive required arguments<a class="headerlink" href="#gtranslate-detect_table-mutually-exclusive-required-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd>--genome_dir</kbd></dt>
 <dd><p>directory containing genome files in FASTA format</p>
@@ -156,16 +156,16 @@ It is used to predict the translation table (TT) used by prokaryotic genomes. By
 </dd>
 </dl>
 </section>
-<section id="gtranslate.cli-get_main_parser-required-named-arguments">
-<h3>required named arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-required-named-arguments" title="Link to this heading"></a></h3>
+<section id="gtranslate-detect_table-required-named-arguments">
+<span id="gtranslate.cli-get_main_parser-required-named-arguments"></span><h3>required named arguments<a class="headerlink" href="#gtranslate-detect_table-required-named-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd>--out_dir</kbd></dt>
 <dd><p>directory to output files</p>
 </dd>
 </dl>
 </section>
-<section id="gtranslate.cli-get_main_parser-optional-arguments">
-<h3>optional arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-optional-arguments" title="Link to this heading"></a></h3>
+<section id="gtranslate-detect_table-optional-arguments">
+<span id="gtranslate.cli-get_main_parser-optional-arguments"></span><h3>optional arguments<a class="headerlink" href="#gtranslate-detect_table-optional-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd>-x, --extension</kbd></dt>
 <dd><p>extension of files to process, e.g., “fna”, “fasta”, “gz” for gzipped files</p>

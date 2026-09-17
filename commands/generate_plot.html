@@ -81,8 +81,8 @@
 <li class="toctree-l2"><a class="reference internal" href="fit_models.html">fit_models</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">generate_plot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#arguments">Arguments</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-required-named-arguments">required named arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gtranslate.cli-get_main_parser-optional-arguments">optional arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gtranslate-generate_plot-required-named-arguments">required named arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gtranslate-generate_plot-optional-arguments">optional arguments</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#files-output">Files output</a></li>
@@ -134,14 +134,14 @@
 <p>Machine learning can sometimes feel like a “black box”. <code class="docutils literal notranslate"><span class="pre">generate_plot</span></code> lets you see exactly why the model made a certain call. It creates an interactive HTML dashboard where you can see your genomes mapped out. You can visually explore how they cluster based on their Trp/Gly ratios and coding density, making it much easier to verify outliers or double-check tricky predictions.</p>
 <section id="arguments">
 <h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">gtranslate</span> <span class="n">generate_plot</span> <span class="o">--</span><span class="n">feature_file</span> <span class="n">FEATURE_FILE</span> <span class="o">--</span><span class="n">output_file</span>
+<div class="highlight-default notranslate" id="gtranslate-generate_plot"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">gtranslate</span> <span class="n">generate_plot</span> <span class="o">--</span><span class="n">feature_file</span> <span class="n">FEATURE_FILE</span> <span class="o">--</span><span class="n">output_file</span>
                                 <span class="n">OUTPUT_FILE</span>
                                 <span class="p">[</span><span class="o">--</span><span class="n">selected_genome_file</span> <span class="n">SELECTED_GENOME_FILE</span><span class="p">]</span>
                                 <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="gtranslate.cli-get_main_parser-required-named-arguments">
-<h3>required named arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-required-named-arguments" title="Link to this heading"></a></h3>
+<section id="gtranslate-generate_plot-required-named-arguments">
+<span id="gtranslate.cli-get_main_parser-required-named-arguments"></span><h3>required named arguments<a class="headerlink" href="#gtranslate-generate_plot-required-named-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd>--feature_file</kbd></dt>
 <dd><p>path to TSV file containing features for each genome</p>
@@ -151,8 +151,8 @@
 </dd>
 </dl>
 </section>
-<section id="gtranslate.cli-get_main_parser-optional-arguments">
-<h3>optional arguments<a class="headerlink" href="#gtranslate.cli-get_main_parser-optional-arguments" title="Link to this heading"></a></h3>
+<section id="gtranslate-generate_plot-optional-arguments">
+<span id="gtranslate.cli-get_main_parser-optional-arguments"></span><h3>optional arguments<a class="headerlink" href="#gtranslate-generate_plot-optional-arguments" title="Link to this heading"></a></h3>
 <dl class="option-list">
 <dt><kbd>--selected_genome_file</kbd></dt>
 <dd><p>path to file containing the list of selected genomes.One genome ID per line.</p>
