@@ -64,7 +64,7 @@ a:visited, a {
 
 /* Dynamically injected layout fix to display version when logo_only is True */
 .wy-side-nav-search > a::after {
-    content: "v0.0.4";
+    content: "v0.0.5";
     display: block;
     text-align: center;
     margin-top: 10px;
