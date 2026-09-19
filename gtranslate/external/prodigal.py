@@ -76,8 +76,14 @@ class Prodigal(object):
         ----------
         fasta_path : str
             Path to FASTA file to process.
-        :return
-            False if an error occurred.
+
+        Returns
+        -------
+        tuple or None
+            (aa_gene_file, nt_gene_file, gff_file, tln_table_file, was_skipped,
+            is_empty, skip_reason). The first four entries are None when
+            is_empty is True, as no genes were called for the genome. None is
+            returned if Prodigal failed to produce any result at all.
         """
 
         # Create objects to write the output data to.
@@ -94,7 +100,7 @@ class Prodigal(object):
         if all([file_has_checksum(x) for x in out_files]):
             tln_table_file.read()
             self.warnings.info(f'Skipped Prodigal processing for: {genome_id}')
-            return aa_gene_file, nt_gene_file, gff_file, tln_table_file, True , False
+            return aa_gene_file, nt_gene_file, gff_file, tln_table_file, True, False, None
 
         # Run Prodigal
         pr = ProdigalRunner(1, False)
@@ -110,11 +116,11 @@ class Prodigal(object):
         summary_stats = summary_stats[list(summary_stats.keys())[0]]
 
         if summary_stats.is_empty:
-            shutil.rmtree(output_dir)
-            if self.force:
-                return summary_stats
-            else:
-                raise Exception("An error was encountered while running Prodigal.")
+            # Prodigal failed to call any genes, so the genome is skipped rather
+            # than aborting the run. It is reported in run().
+            shutil.rmtree(output_dir, ignore_errors=True)
+            skip_reason = summary_stats.skip_reason or 'No genes were called by Prodigal'
+            return None, None, None, None, False, True, skip_reason
 
         else:
             # rename output files to adhere to GTDB conventions and desired genome
@@ -143,7 +149,8 @@ class Prodigal(object):
                     with open(out_file + CHECKSUM_SUFFIX, 'w') as fh:
                         fh.write(sha256(out_file))
 
-        return aa_gene_file, nt_gene_file, gff_file, tln_table_file, False , summary_stats.is_empty
+        return (aa_gene_file, nt_gene_file, gff_file, tln_table_file, False,
+                summary_stats.is_empty, None)
 
     def _worker(self, out_dict, worker_queue, writer_queue, n_skipped):
         """This worker function is invoked in a process."""
@@ -160,11 +167,18 @@ class Prodigal(object):
 
             # Only proceed if an error didn't occur in BioLib Prodigal
             if rtn_files:
-                aa_gene_file, nt_gene_file, gff_file, translation_table_file,was_skipped,is_empty = rtn_files
+                (aa_gene_file, nt_gene_file, gff_file, translation_table_file,
+                 was_skipped, is_empty, skip_reason) = rtn_files
 
                 if was_skipped:
                     with n_skipped.get_lock():
                         n_skipped.value += 1
+
+                if is_empty:
+                    out_dict[genome_id] = {"is_empty": True,
+                                           "skip_reason": skip_reason}
+                    writer_queue.put((genome_id, was_skipped))
+                    continue
 
                 prodigal_infos = {"aa_gene_path": aa_gene_file,
                                     "nt_gene_path": nt_gene_file,
@@ -181,7 +195,8 @@ class Prodigal(object):
                                     "warnings": translation_table_file.warnings,
                                     "ensemble_preds": translation_table_file.ensemble_preds,
                                     "feature_vector": translation_table_file.feature_vector,
-                                    "is_empty": is_empty}
+                                    "is_empty": is_empty,
+                                    "skip_reason": skip_reason}
 
                 out_dict[genome_id] = prodigal_infos
 
@@ -271,44 +286,30 @@ class Prodigal(object):
 
         # Report on any genomes which failed to have any genes called
         result_dict = dict()
-        lq_gids = list()
-        empty_gids = list()
-        fails = open(self.failed_genomes_file,'w')
-        for gid, gid_dict in out_dict.items():
+        failed_gids = list()
+        for gid, gid_dict in sorted(out_dict.items()):
             if gid_dict['is_empty']:
-                empty_gids.append(gid)
+                failed_gids.append((gid, gid_dict.get('skip_reason')
+                                    or 'No genes were called by Prodigal'))
             elif os.path.getsize(gid_dict['aa_gene_path']) <= 1:
-                lq_gids.append(gid)
+                failed_gids.append((gid, 'No genes were called by Prodigal'))
             else:
                 result_dict[gid] = gid_dict
 
-        if len(lq_gids) > 0:
-            self.logger.warning(f'Skipping {len(lq_gids+empty_gids)} of {len(genomic_files)} '
+        with open(self.failed_genomes_file, 'w') as fails:
+            for gid, reason in failed_gids:
+                fails.write(f'{gid}\t{reason}\n')
+
+        if len(failed_gids) > 0:
+            # the console and gtranslate.log only report the number of skipped
+            # genomes, while gtranslate.warnings.log lists each of them
+            self.logger.warning(f'Skipping {len(failed_gids)} of {len(genomic_files)} '
                                 f'genomes as no genes were called by Prodigal. '
                                 f'Check the genome quality (see gtranslate.warnings.log).')
-            self.warnings.warning(f'The following {len(lq_gids+empty_gids)} genomes have '
+            self.warnings.warning(f'The following {len(failed_gids)} genomes have '
                                   f'been excluded from analysis due to Prodigal '
                                   f'failing to call any genes:')
-
-
-            # If there are few low-quality genomes just output to console.
-            if len(lq_gids+empty_gids) > 10:
-                for lq_gid in lq_gids:
-                    self.warnings.info(lq_gid)
-                    fails.write(f'{lq_gid}\tNo genes were called by Prodigal\n')
-                for empty_gid in empty_gids:
-                    self.warnings.info(empty_gid)
-                    fails.write(f'{empty_gid}\tEmpty file\n')
-            else:
-                for lq_gid in lq_gids:
-                    self.logger.warning(f'Skipping: {lq_gid}')
-                    self.warnings.info(lq_gid)
-                    fails.write(f'{lq_gid}\tNo genes were called by Prodigal\n')
-                for empty_gid in empty_gids:
-                    self.logger.warning(f'Skipping: {empty_gid}')
-                    self.warnings.info(empty_gid)
-                    fails.write(f'{empty_gid}\tEmpty file\n')
-
-        fails.close()
+            for gid, reason in failed_gids:
+                self.warnings.info(f'{gid}\t{reason}')
 
         return result_dict
