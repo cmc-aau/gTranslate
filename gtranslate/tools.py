@@ -156,8 +156,6 @@ def remove_intermediate_files(output_dir):
     ----------
     output_dir : str
         The path to the output directory.
-    wf_name : str
-        The name of the workflow to delete intermediate files.
     """
     #Remove predict step intermediate files
     intermediate_identify = os.path.join(output_dir, DIR_IDENTIFY_INTERMEDIATE)

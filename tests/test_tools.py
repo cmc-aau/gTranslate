@@ -105,7 +105,7 @@ class TestTools(unittest.TestCase):
         mock_exists.return_value = True
         mock_isdir.return_value = True
 
-        remove_intermediate_files('/output/dir', 'workflow_name')
+        remove_intermediate_files('/output/dir')
         # Check if rmtree was triggered to clean the directory
         self.assertTrue(mock_rmtree.called)
 

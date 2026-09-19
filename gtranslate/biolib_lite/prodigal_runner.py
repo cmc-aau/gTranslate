@@ -52,6 +52,7 @@ class ConsumerData:
     ensemble_preds: dict
     feature_vector: dict
     metadata: dict = field(default_factory=dict)
+    skip_reason: str = None
 
     def __post_init__(self):
         for key, value in self.metadata.items():
@@ -73,11 +74,29 @@ class Prodigal(object):
         """
 
         self.logger = logging.getLogger('timestamp')
+        self.warnings = logging.getLogger('warnings')
 
         check_on_path('prodigal')
 
         self.cpus = cpus
         self.verbose = verbose
+
+    def _skipped_genome(self, genome_id, aa_gene_file, nt_gene_file, gff_file, reason):
+        """Build the producer result for a genome which cannot be processed.
+
+        Parameters
+        ----------
+        reason : str
+            Human readable explanation of why the genome is being skipped.
+
+        Returns
+        -------
+        tuple
+            Producer result flagged as having no called genes.
+        """
+
+        return (genome_id, aa_gene_file, nt_gene_file, gff_file, {},
+                0.0, [reason], {}, {}, True, reason)
 
     def _producer(self, genome_file_tuple):
         """Apply prodigal to genome with most suitable translation table.
@@ -110,9 +129,11 @@ class Prodigal(object):
             seqs = read_fasta(genome_file)
 
             if len(seqs) == 0:
-                self.logger.warning('Cannot call Prodigal on an empty genome. '
-                                    'Skipped: {}'.format(genome_file))
-                return (genome_id, aa_gene_file, nt_gene_file, gff_file, {}, 0.0, ["Skipped: Empty genome"], True)
+                reason = 'Cannot call Prodigal on an empty genome'
+                self.logger.warning(f'{reason}. Skipped: {genome_id}')
+                self.warnings.warning(f'{genome_id}\t{reason}')
+                return self._skipped_genome(genome_id, aa_gene_file,
+                                            nt_gene_file, gff_file, reason)
 
             with tempfile.TemporaryDirectory('gtranslate_prodigal_tmp_') as tmp_dir:
                 # if this is a gzipped genome, re-write the uncompressed genome
@@ -142,11 +163,18 @@ class Prodigal(object):
                 local_warnings = []
                 for translation_table in translation_tables:
                     os.makedirs(os.path.join(tmp_dir, str(translation_table)))
-                    _aa_gene_file_tmp, nt_gene_file_tmp, gff_file_tmp, fallback_warning = self.run_prodigal_command(translation_table,
-                                                                                                 tmp_dir, 
-                                                                                                 genome_id,
-                                                                                                 processed_prodigal_input, 
-                                                                                                 total_bases)
+                    (_aa_gene_file_tmp, nt_gene_file_tmp, gff_file_tmp,
+                     fallback_warning, error_msg) = self.run_prodigal_command(translation_table,
+                                                                              tmp_dir,
+                                                                              genome_id,
+                                                                              processed_prodigal_input,
+                                                                              total_bases)
+
+                    # Prodigal failed to call genes, so there is nothing to
+                    # classify and the genome must be skipped.
+                    if error_msg:
+                        return self._skipped_genome(genome_id, aa_gene_file,
+                                                    nt_gene_file, gff_file, error_msg)
 
                     if fallback_warning:
                         local_warnings.append(fallback_warning)
@@ -168,6 +196,17 @@ class Prodigal(object):
                     table_trp_counts[translation_table]['UGA'] = uga
                     table_trp_counts[translation_table]['UGG'] = ugg
                     table_trp_counts[translation_table]['GLY'] = gly
+
+                # a genome with called genes always contains glycine codons, so a
+                # zero count indicates no usable genes were called. Only the table 4
+                # counts are checked as every classifier feature is derived from them.
+                if table_trp_counts[4]['GLY'] == 0:
+                    reason = ('No glycine codons in the genes called by Prodigal, '
+                              'so the genome could not be classified')
+                    self.logger.warning(f'{reason}. Skipped: {genome_id}')
+                    self.warnings.warning(f'{genome_id}\t{reason}')
+                    return self._skipped_genome(genome_id, aa_gene_file,
+                                                nt_gene_file, gff_file, reason)
 
                 genome_metadata_dict = {}
                 genome_metadata_dict['gc_percent'] = calculate_gc_content(seqs)
@@ -209,7 +248,7 @@ class Prodigal(object):
                     os.makedirs(os.path.join(tmp_dir, str(best_translation_table)), exist_ok=True)
 
                     # Actually run Prodigal to generate the .faa, .fna, and .gff files
-                    _, _, _, fallback_warning = self.run_prodigal_command(
+                    _, _, _, fallback_warning, error_msg = self.run_prodigal_command(
                         best_translation_table,
                         tmp_dir,
                         genome_id,
@@ -217,8 +256,12 @@ class Prodigal(object):
                         total_bases
                     )
 
+                    if error_msg:
+                        return self._skipped_genome(genome_id, aa_gene_file,
+                                                    nt_gene_file, gff_file, error_msg)
+
                     if fallback_warning:
-                        pred_warnings.extend(local_warnings)
+                        pred_warnings.append(fallback_warning)
 
                 genome_metadata_dict['best_tln_table'] = best_translation_table
 
@@ -230,7 +273,7 @@ class Prodigal(object):
                                              genome_id + '.gff'), gff_file)
 
         return (genome_id, aa_gene_file, nt_gene_file, gff_file,genome_metadata_dict,
-                pred_confidence,pred_warnings,ensemble_preds,feature_vector,False)
+                pred_confidence,pred_warnings,ensemble_preds,feature_vector,False,None)
 
     def _consumer(self, produced_data, consumer_data):
         """Consume results from producer processes.
@@ -256,7 +299,8 @@ class Prodigal(object):
         if consumer_data is None:
             consumer_data = {}
 
-        genome_id, aa_gene_file, nt_gene_file, gff_file, metadata_dict, pred_confidence, pred_warnings,ensemble_preds,feature_vector, is_empty = produced_data
+        (genome_id, aa_gene_file, nt_gene_file, gff_file, metadata_dict, pred_confidence,
+         pred_warnings, ensemble_preds, feature_vector, is_empty, skip_reason) = produced_data
 
 
         for warning in pred_warnings:
@@ -276,7 +320,8 @@ class Prodigal(object):
             pred_warnings=pred_warnings,
             ensemble_preds=ensemble_preds,
             metadata=metadata_dict,
-            feature_vector=feature_vector
+            feature_vector=feature_vector,
+            skip_reason=skip_reason
         )
 
         return consumer_data
@@ -411,14 +456,23 @@ class Prodigal(object):
             stdout, stderr = proc.communicate()
 
         if proc.returncode != 0:
-            self.logger.warning('Error running Prodigal on genome: '
-                                '{}'.format(genome_file))
-            self.logger.warning('Error message:')
-            for line in stderr.splitlines():
-                print(line)
-            self.logger.warning('This genome is skipped.')
+            # flatten the Prodigal error so that it can be reported on a single
+            # line and recorded as the reason the genome was skipped
+            error_msg = ' '.join(stderr.split())
+            if not error_msg:
+                error_msg = f'Prodigal exited with code {proc.returncode}'
 
-        return aa_gene_file_tmp, nt_gene_file_tmp, gff_file_tmp, fallback_warning
+            self.logger.warning(f'Error running Prodigal on genome {genome_id}: '
+                                f'{genome_file}')
+            self.logger.warning(f'Error message: {error_msg}')
+            self.logger.warning('This genome is skipped.')
+            self.warnings.warning(f'{genome_id}\tProdigal failed under translation '
+                                  f'table {translation_table}: {error_msg}')
+
+            return (aa_gene_file_tmp, nt_gene_file_tmp, gff_file_tmp,
+                    fallback_warning, error_msg)
+
+        return aa_gene_file_tmp, nt_gene_file_tmp, gff_file_tmp, fallback_warning, None
 
     def _count_codons_of_interest(self, gene_file):
         """
@@ -441,7 +495,8 @@ class Prodigal(object):
         # Parse the gene file (standard FASTA)
         try:
             genes = read_fasta(gene_file)
-        except Exception:
+        except Exception as e:
+            self.warnings.warning(f'Failed to read called genes from {gene_file}: {e}')
             return 0, 0, 0
 
         for seq in genes.values():
