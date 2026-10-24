@@ -19,7 +19,7 @@ How gTranslate works
 gTranslate calls genes with Prodigal under translation tables 11 and 4, derives eight features from the
 resulting gene calls (coding densities, GC content, and the frequency of in-frame UGA codons relative to
 tryptophan and glycine codons), and predicts the translation table by majority vote across five machine
-learning classifiers.
+learning classifiers. See :ref:`about/how_it_works` for details, and :ref:`about/validation` for its accuracy.
 
 .. raw:: html
 
@@ -70,5 +70,8 @@ We also encourage you to cite the third-party dependencies as described in :ref:
    :caption: About
    :maxdepth: 1
 
+   about/how_it_works
+   about/models
+   about/validation
    changelog
    references

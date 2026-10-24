@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How gTranslate works &mdash; gTranslate 0.0.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=90e17d17" />
+
+  
+    <link rel="shortcut icon" href="../_static/gtranslate_favicon.png"/>
+    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/about/how_it_works.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=bbaf98b3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/custom.js?v=12edf98b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script defer data-domain="cmc-aau.github.io/gtranslate" src="https://plausible.gtdb.ecogenomic.org/js/script.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-84847737-2');
+    </script>
+
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models" href="models.html" />
+    <link rel="prev" title="translation_table_summary.tsv" href="../files/translation_table_summary.tsv.html" />
+ 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/gTranslate_logo_red.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../announcements.html">Announcements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Installing gTranslate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How gTranslate works</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#calling-genes-under-translation-tables-11-and-4">1. Calling genes under translation tables 11 and 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-feature-vector">2. Building the feature vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#predicting-the-translation-table">3. Predicting the translation table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gTranslate</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How gTranslate works</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/about/how_it_works.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-gtranslate-works">
+<span id="about-how-it-works"></span><h1>How gTranslate works<a class="headerlink" href="#how-gtranslate-works" title="Link to this heading"></a></h1>
+<p>gTranslate predicts whether a prokaryotic genome uses translation table 11 (the standard bacterial code), 4 (UGA
+reassigned from a stop codon to tryptophan) or 25 (UGA reassigned to glycine). It does this in three steps:
+calling genes under different translation tables, summarising the gene calls as eight features, and predicting the
+translation table with an ensemble of five machine learning classifiers.</p>
+<object data="../_static/gtranslate_workflow.svg" type="image/svg+xml"
+        style="width:100%;aspect-ratio:960/632" aria-label="How gTranslate predicts a translation table">
+  <img src="../_static/gtranslate_workflow.svg" alt="How gTranslate predicts a translation table">
+</object><section id="calling-genes-under-translation-tables-11-and-4">
+<h2>1. Calling genes under translation tables 11 and 4<a class="headerlink" href="#calling-genes-under-translation-tables-11-and-4" title="Link to this heading"></a></h2>
+<p>Genes are called twice with <a class="reference external" href="https://github.com/hyattpd/Prodigal">Prodigal</a> (Hyatt et al., 2010), once using
+translation table 11 and once using translation table 4. Table 4 is used to represent both UGA reassignments, as
+tables 4 and 25 only differ in the amino acid encoded by UGA and therefore result in the same gene calls.</p>
+<p>If a genome reassigns UGA, genes called under table 11 are truncated at each in-frame UGA codon, which lowers the
+coding density. Under table 4, these genes are read through and the coding density is higher. For genomes using
+table 11, both tables give similar coding densities.</p>
+<p>Prodigal is run with restricted gene prediction across ambiguous bases (<code class="docutils literal notranslate"><span class="pre">-m</span></code>). Genomes under 100 kb are processed
+with Prodigal’s metagenome mode (<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">meta</span></code>). Larger genomes use its single genome mode, falling back to the
+metagenome mode if Prodigal fails, in which case a warning is reported.</p>
+</section>
+<section id="building-the-feature-vector">
+<h2>2. Building the feature vector<a class="headerlink" href="#building-the-feature-vector" title="Link to this heading"></a></h2>
+<p>The gene calls are summarised as eight features:</p>
+<ul class="simple">
+<li><p>the coding density under translation tables 4 and 11, and the difference between them;</p></li>
+<li><p>the GC content of the genome;</p></li>
+<li><p>the ratio of in-frame UGA to UGG (tryptophan) codons and the total number of UGA and UGG codons;</p></li>
+<li><p>the ratio of in-frame UGA to GGN (glycine) codons, and the ratio of UGG to GGN codons.</p></li>
+</ul>
+<p>The codon features are calculated from the genes called under table 4. As UGA is read as tryptophan in table 4 and
+glycine in table 25, the codon usage around UGA helps distinguish between these two tables. The exact definitions are
+given in <a class="reference internal" href="../files/feature_summary.tsv.html#files-feature-summary-tsv"><span class="std std-ref">feature_summary.tsv</span></a>.</p>
+</section>
+<section id="predicting-the-translation-table">
+<h2>3. Predicting the translation table<a class="headerlink" href="#predicting-the-translation-table" title="Link to this heading"></a></h2>
+<p>The features are provided to five classifiers: AdaBoost, decision tree, k-nearest neighbours, multi-layer perceptron,
+and XGBoost (see <a class="reference internal" href="models.html#about-models"><span class="std std-ref">Models</span></a>). The translation table is predicted by majority vote. Each classifier’s vote and
+a confidence score are reported in <a class="reference internal" href="../files/translation_table_summary.tsv.html#files-translation-table-summary-tsv"><span class="std std-ref">translation_table_summary.tsv</span></a>, along with how ties are resolved.</p>
+<p>If table 25 is predicted, genes are called again with Prodigal using table 25, so that the genes kept with
+<code class="docutils literal notranslate"><span class="pre">--keep_called_genes</span></code> are translated using the predicted table.</p>
+</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>gTranslate only predicts translation tables 11, 4 and 25, i.e. whether the UGA stop codon is reassigned to
+tryptophan or glycine. Other reassignments, such as UAG to pyrrolysine, are not predicted.</p></li>
+<li><p>gTranslate is designed for prokaryotic genomes and should not be applied to eukaryotic or organelle genomes.</p></li>
+<li><p>Predictions are most reliable for genomes similar to those used for training. Predictions for genomes from
+taxa without close relatives in the training data, and for highly incomplete or fragmented assemblies, should be
+treated with more caution (see <a class="reference internal" href="validation.html#about-validation"><span class="std std-ref">Validation</span></a>).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../files/translation_table_summary.tsv.html" class="btn btn-neutral float-left" title="translation_table_summary.tsv" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Pierre-Alain Chaumeil and Donovan Parks.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

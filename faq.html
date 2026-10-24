@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=c9c80aa6" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=90e17d17" />
 
   
     <link rel="shortcut icon" href="_static/gtranslate_favicon.png"/>
@@ -71,7 +71,18 @@
 <li class="toctree-l1"><a class="reference internal" href="announcements.html">Announcements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installing/index.html">Installing gTranslate</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#which-translation-tables-can-gtranslate-predict">Which translation tables can gTranslate predict?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-accurate-is-gtranslate">How accurate is gTranslate?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-should-i-interpret-the-confidence-and-warnings">How should I interpret the confidence and warnings?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-use-gtranslate-on-metagenome-assembled-genomes-mags-or-incomplete-genomes">Can I use gTranslate on metagenome-assembled genomes (MAGs) or incomplete genomes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-does-the-prediction-disagree-with-the-taxonomy-of-my-genome-or-with-ncbi">Why does the prediction disagree with the taxonomy of my genome, or with NCBI?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-is-a-genome-missing-from-the-results">Why is a genome missing from the results?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-use-gzipped-genomes">Can I use gzipped genomes?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gtranslate-reports-missing-model-files-what-should-i-do">gTranslate reports missing model files, what should I do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#do-i-need-to-download-new-models-when-upgrading-gtranslate">Do I need to download new models when upgrading gTranslate?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-long-does-gtranslate-take-to-run">How long does gTranslate take to run?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#can-i-train-my-own-models">Can I train my own models?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-cite-gtranslate">How do I cite gTranslate?</a></li>
 </ul>
 </li>
 </ul>
@@ -82,6 +93,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="about/how_it_works.html">How gTranslate works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about/validation.html">Validation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change log</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -112,9 +126,75 @@
              
   <section id="faq">
 <span id="id1"></span><h1>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h1>
+<section id="which-translation-tables-can-gtranslate-predict">
+<h2>Which translation tables can gTranslate predict?<a class="headerlink" href="#which-translation-tables-can-gtranslate-predict" title="Link to this heading"></a></h2>
+<p>Translation tables 11 (the standard bacterial code), 4 (UGA reassigned to tryptophan) and 25 (UGA reassigned to
+glycine). Other genetic codes, such as the reassignment of UAG to pyrrolysine, are not predicted. gTranslate is
+designed for prokaryotic genomes and should not be used for eukaryotic or organelle genomes.</p>
+</section>
+<section id="how-accurate-is-gtranslate">
+<h2>How accurate is gTranslate?<a class="headerlink" href="#how-accurate-is-gtranslate" title="Link to this heading"></a></h2>
+<p>In the gTranslate manuscript, the distributed models correctly predicted the translation table of more than 99.99% of
+250,583 test genomes, including many from taxa absent from the training data. Most errors were between tables 4 and
+25. See <a class="reference internal" href="about/validation.html#about-validation"><span class="std std-ref">Validation</span></a>.</p>
+</section>
+<section id="how-should-i-interpret-the-confidence-and-warnings">
+<h2>How should I interpret the confidence and warnings?<a class="headerlink" href="#how-should-i-interpret-the-confidence-and-warnings" title="Link to this heading"></a></h2>
+<p>A confidence of 1.0 means all five classifiers predicted the same translation table. Lower values indicate
+disagreement between the classifiers, and a warning is reported when no table received more than two votes.
+Predictions with a low confidence or warnings should be reviewed, e.g. by checking the predictions for related
+genomes or using <a class="reference internal" href="commands/generate_plot.html#commands-generate-plot"><span class="std std-ref">generate_plot</span></a> to compare the genome to others. See
+<a class="reference internal" href="files/translation_table_summary.tsv.html#files-translation-table-summary-tsv"><span class="std std-ref">translation_table_summary.tsv</span></a> for how the confidence is calculated and the possible warnings.</p>
+</section>
+<section id="can-i-use-gtranslate-on-metagenome-assembled-genomes-mags-or-incomplete-genomes">
+<h2>Can I use gTranslate on metagenome-assembled genomes (MAGs) or incomplete genomes?<a class="headerlink" href="#can-i-use-gtranslate-on-metagenome-assembled-genomes-mags-or-incomplete-genomes" title="Link to this heading"></a></h2>
+<p>Yes. The training data included genomes as low as 18% complete, and gTranslate was tested on genomes from metagenomic
+studies that were at least 50% complete. Genomes under 100 kb are processed using Prodigal’s metagenome mode.
+Predictions for very small or highly fragmented genomes should be treated with more caution.</p>
+</section>
+<section id="why-does-the-prediction-disagree-with-the-taxonomy-of-my-genome-or-with-ncbi">
+<h2>Why does the prediction disagree with the taxonomy of my genome, or with NCBI?<a class="headerlink" href="#why-does-the-prediction-disagree-with-the-taxonomy-of-my-genome-or-with-ncbi" title="Link to this heading"></a></h2>
+<p>The translation table is not always the same for all members of a taxon. For example, the gTranslate manuscript
+identified a lineage of <em>Ca.</em> Stammera capleta using table 11 although the species uses table 4, and lineages of
+<em>Minisyncoccia</em> using table 4 within a phylum otherwise using tables 11 and 25. Disagreements can also arise from
+genomes that are misclassified. The translation table information at NCBI is based on taxonomy and was incorrect for
+some genomes in the manuscript’s analyses.</p>
+</section>
+<section id="why-is-a-genome-missing-from-the-results">
+<h2>Why is a genome missing from the results?<a class="headerlink" href="#why-is-a-genome-missing-from-the-results" title="Link to this heading"></a></h2>
+<p>Genomes for which Prodigal could not call genes, e.g. empty genomes, are skipped. Skipped genomes and the reason
+they were skipped are listed in <a class="reference internal" href="files/failed_genomes.tsv.html#files-failed-genomes-tsv"><span class="std std-ref">failed_genomes.tsv</span></a> and <code class="docutils literal notranslate"><span class="pre">gtranslate.warnings.log</span></code>.</p>
+</section>
+<section id="can-i-use-gzipped-genomes">
+<h2>Can I use gzipped genomes?<a class="headerlink" href="#can-i-use-gzipped-genomes" title="Link to this heading"></a></h2>
+<p>Yes. With <code class="docutils literal notranslate"><span class="pre">--genome_dir</span></code>, set <code class="docutils literal notranslate"><span class="pre">--extension</span></code> to the full extension of the files, e.g. <code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">fna.gz</span></code>, so that the
+genome identifiers do not include the <code class="docutils literal notranslate"><span class="pre">.fna</span></code> extension. With <code class="docutils literal notranslate"><span class="pre">--batchfile</span></code>, gzipped and uncompressed files can be
+mixed.</p>
+</section>
+<section id="gtranslate-reports-missing-model-files-what-should-i-do">
+<h2>gTranslate reports missing model files, what should I do?<a class="headerlink" href="#gtranslate-reports-missing-model-files-what-should-i-do" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> environment variable, or the <code class="docutils literal notranslate"><span class="pre">--custom_model_path</span></code> argument, must point to the
+directory containing the six extracted model files. Run <a class="reference internal" href="commands/check_install.html#commands-check-install"><span class="std std-ref">check_install</span></a> to check which files are
+missing, and see <a class="reference internal" href="installing/index.html#installing-gtranslate-models"><span class="std std-ref">gTranslate Models</span></a> to download the models.</p>
+</section>
+<section id="do-i-need-to-download-new-models-when-upgrading-gtranslate">
+<h2>Do I need to download new models when upgrading gTranslate?<a class="headerlink" href="#do-i-need-to-download-new-models-when-upgrading-gtranslate" title="Link to this heading"></a></h2>
+<p>Not currently: gTranslate 0.0.4 and later use the same models. Any release that requires new models will be listed
+in the <a class="reference internal" href="announcements.html"><span class="doc">Announcements</span></a>.</p>
+</section>
+<section id="how-long-does-gtranslate-take-to-run">
+<h2>How long does gTranslate take to run?<a class="headerlink" href="#how-long-does-gtranslate-take-to-run" title="Link to this heading"></a></h2>
+<p>Approximately 20 to 30 seconds per genome per CPU, most of which is spent calling genes with Prodigal. Use <code class="docutils literal notranslate"><span class="pre">--cpus</span></code>
+to process genomes in parallel.</p>
+</section>
 <section id="can-i-train-my-own-models">
 <h2>Can I train my own models?<a class="headerlink" href="#can-i-train-my-own-models" title="Link to this heading"></a></h2>
-<p>Yes, you can</p>
+<p>Yes, using the <a class="reference internal" href="commands/ground_truth.html#commands-ground-truth"><span class="std std-ref">ground_truth</span></a>, <a class="reference internal" href="commands/build_features.html#commands-build-features"><span class="std std-ref">build_features</span></a> and <a class="reference internal" href="commands/fit_models.html#commands-fit-models"><span class="std std-ref">fit_models</span></a> commands.
+See <a class="reference internal" href="about/models.html#about-models"><span class="std std-ref">Models</span></a> for how the distributed models were trained.</p>
+</section>
+<section id="how-do-i-cite-gtranslate">
+<h2>How do I cite gTranslate?<a class="headerlink" href="#how-do-i-cite-gtranslate" title="Link to this heading"></a></h2>
+<p>Please cite the gTranslate manuscript and the third-party software it uses, see <a class="reference internal" href="references.html#references"><span class="std std-ref">References</span></a>.</p>
 </section>
 </section>
 
