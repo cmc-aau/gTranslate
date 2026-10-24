@@ -6,7 +6,7 @@
 /* Set the gTranslate logo size */
 .wy-side-nav-search .wy-dropdown>a img.logo, .wy-side-nav-search>a img.logo {
    width: 100%;
-   max-width: 230px;
+   max-width: 200px;
 }
 
 /* Change the visited link colour */
