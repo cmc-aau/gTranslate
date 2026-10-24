@@ -3,15 +3,15 @@
       max-width: none;
   }
 
-/* Set the GTDB-Tk logo size */
+/* Set the gTranslate logo size */
 .wy-side-nav-search .wy-dropdown>a img.logo, .wy-side-nav-search>a img.logo {
    width: 100%;
-   max-width: 150px;
+   max-width: 230px;
 }
 
 /* Change the visited link colour */
 a:visited, a {
-   color: #bf2000;
+   color: #A33A2C;
 }
 .wy-menu-vertical a {
    color: #d9d9d9;
@@ -24,13 +24,13 @@ a:visited, a {
     font-size: 80%;
     line-height: normal;
     background: #e8f3ea;
-    color: #bf2000;
-    border-top: solid 3px #ED2A02;
+    color: #A33A2C;
+    border-top: solid 3px #A33A2C;
     padding: 6px;
     position: relative;
 }
 
-/* Theme for GTDB-Tk */
+/* Theme for gTranslate */
 
 /* Top left background */
 .wy-side-nav-search, .wy-nav-top {
@@ -39,22 +39,22 @@ a:visited, a {
 
 /* Background when a link is clicked on the left */
 .wy-menu-vertical a:active {
-    background: #bf2000;
+    background: #A33A2C;
 }
 
 /* Border of search box */
 .wy-side-nav-search input[type=text] {
-    border-color: #bf2000;
+    border-color: #A33A2C;
 }
 
 /* Set the version colour */
 .wy-side-nav-search>div.version {
-    color: #b72002;
+    color: #A33A2C;
 }
 
 /* Set the menu colour */
 .wy-menu-vertical header, .wy-menu-vertical p.caption {
-    color: #bf2000;
+    color: #A33A2C;
 }
 
 /* Change the row colour when mouseover */
@@ -75,5 +75,5 @@ a:visited, a {
     margin-top: 10px;
     font-size: 90%;
     font-weight: bold;
-    color: #bf2000;
+    color: #A33A2C;
 }
