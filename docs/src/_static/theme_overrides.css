@@ -61,3 +61,8 @@ a:visited, a {
 .row-even:hover td, .row-odd:hover td {
     background-color: #e5e5e5 !important;
 }
+
+/* Allow text in table cells to wrap instead of overflowing the page */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
