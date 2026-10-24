@@ -76,6 +76,9 @@ class Misc(object):
             True if the installation is complete, False otherwise.
         """
 
+        # Assume this was successful unless otherwise observed.
+        ok = True
+
         # Check that all programs are on the system path.
         self.logger.info(f'Checking that all third-party software are on the system path:')
         names = {'prodigal'}
@@ -89,11 +92,9 @@ class Misc(object):
                 self.logger.info("         |-- {:16} {}".format(
                     name, colour('OK', ['bright'], fg='green')))
             else:
-                self.logger.info("         |-- {:16} {}".format(
-                    name, colour('NOT FOUND', ['bright'], fg='yellow')))
-
-        # Assume this was successful unless otherwise observed.
-        ok = True
+                self.logger.warning("         |-- {:16} {}".format(
+                    name, colour('NOT FOUND', ['bright'], fg='red')))
+                ok = False
 
         # Check that all model files are present.
         self.logger.info('Checking that all model files are present:')
@@ -110,5 +111,6 @@ class Misc(object):
                     ok = False
 
         if not ok:
-            raise GTranslateExit('One or more model files are missing, check that GTRANSLATE_MODEL_PATH '
-                                 'points to the directory containing the gTranslate models.')
+            raise GTranslateExit('gTranslate is not correctly installed: third-party software is missing '
+                                 'from the system path or GTRANSLATE_MODEL_PATH does not point to the '
+                                 'directory containing the gTranslate models.')

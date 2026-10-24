@@ -186,15 +186,15 @@ class TrainingManager(object):
                     # determine ground truth translation table based on GTDB
                     # or NCBI taxonomic classification of genome
                     taxa = set()
-                    if taxonomy_idx:
+                    if taxonomy_idx is not None:
                         taxa.update(set(tokens[taxonomy_idx].split(';')))
 
                     gtdb_taxa = set()
-                    if gtdb_taxonomy_idx:
+                    if gtdb_taxonomy_idx is not None:
                         gtdb_taxa.update(set(tokens[gtdb_taxonomy_idx].split(';')))
 
                     ncbi_taxa = set()
-                    if ncbi_taxonomy_idx:
+                    if ncbi_taxonomy_idx is not None:
                         ncbi_taxa.update(set(tokens[ncbi_taxonomy_idx].split(';')))
 
                     if taxa.intersection(self.GTDB_TT25) or gtdb_taxa.intersection(self.GTDB_TT25):
@@ -213,13 +213,13 @@ class TrainingManager(object):
                 # write out ground truth results
                 fout.write(f'{gid}\t{ground_truth_tt}')
 
-                if taxonomy_idx:
+                if taxonomy_idx is not None:
                     fout.write(f'\t{tokens[taxonomy_idx]}')
 
-                if gtdb_taxonomy_idx:
+                if gtdb_taxonomy_idx is not None:
                     fout.write(f'\t{tokens[gtdb_taxonomy_idx]}')
 
-                if ncbi_taxonomy_idx:
+                if ncbi_taxonomy_idx is not None:
                     fout.write(f'\t{tokens[ncbi_taxonomy_idx]}')
 
                 fout.write('\n')

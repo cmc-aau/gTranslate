@@ -83,5 +83,15 @@ class TestMisc(unittest.TestCase):
         with self.assertRaises(GTranslateExit):
             self.misc.check_install()
 
+    @patch.object(type(CONFIG), 'ENV_MODEL_PATH', new_callable=PropertyMock)
+    @patch('gtranslate.misc.check_dependencies')
+    def test_check_install_prodigal_missing(self, mock_check_dependencies, mock_model_path):
+        # Models are present but Prodigal is not on the system path
+        mock_check_dependencies.return_value = False
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            mock_model_path.return_value = self._make_model_dir(tmp_dir)
+            with self.assertRaises(GTranslateExit):
+                self.misc.check_install()
+
 if __name__ == '__main__':
     unittest.main()
