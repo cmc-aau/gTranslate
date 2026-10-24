@@ -12,6 +12,10 @@ Bug Fixes:
   missing.
 * ``detect_table`` now checks that all model files are present before calling genes. Previously,
   a missing model file was reported as a Prodigal error after genes had been called.
+* ``check_install`` now fails if Prodigal is not on the system path. Previously, it reported Prodigal as
+  not found but still succeeded.
+* ``ground_truth`` now reads the taxonomy column when it is the first column of the taxonomy file.
+  Previously, such a column was ignored and all genomes were assigned translation table 11.
 
 
 0.0.6
