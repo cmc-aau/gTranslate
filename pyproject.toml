@@ -51,3 +51,7 @@ version = {attr = "gtranslate.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["."]
+
+[tool.setuptools.package-data]
+# Genomes used by the "gtranslate test" command
+gtranslate = ["tests/data/genomes/*.fna"]

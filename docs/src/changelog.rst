@@ -2,6 +2,16 @@
 Change log
 ==========
 
+0.0.7
+-----
+
+Bug Fixes:
+
+* The genomes used by the ``test`` command are now included in the PyPI and Bioconda packages.
+  Previously, ``gtranslate test`` failed on installed copies of gTranslate as these genomes were
+  missing.
+
+
 0.0.6
 -----
 
