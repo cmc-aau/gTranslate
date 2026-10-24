@@ -53,6 +53,7 @@ We also encourage you to cite the third-party dependencies as described in :ref:
    :caption: Getting started
    :maxdepth: 1
 
+   Home <self>
    announcements
    installing/index
    faq
