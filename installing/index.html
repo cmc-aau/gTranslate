@@ -137,10 +137,13 @@ If you are unsure which one to choose, Bioconda is generally the easiest.</p>
 </section>
 <section id="hardware-requirements">
 <h2>Hardware requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h2>
+<p>Processing time is dominated by gene calling with Prodigal
+and is roughly 30 seconds per genome per CPU, e.g. 5,000 genomes took 26 minutes using 90 CPUs. Use <code class="docutils literal notranslate"><span class="pre">--cpus</span></code> to
+process genomes in parallel.</p>
 </section>
 <section id="python-libraries">
 <h2>Python libraries<a class="headerlink" href="#python-libraries" title="Link to this heading"></a></h2>
-<p>gTranslate is designed for Python &gt;=3.12 and requires the following libraries, which will be automatically installed:</p>
+<p>gTranslate requires Python &gt;= 3.12 and the following libraries, which are installed automatically:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 10.0%" />
@@ -155,52 +158,40 @@ If you are unsure which one to choose, Bioconda is generally the easiest.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference external" href="https://numpy.org/">NumPy</a></p></td>
-<td><p>&gt;= 1.26.0</p></td>
-<td><p>Harris, C.R., Millman, K.J., van der Walt, S.J. et al. Array programming with NumPy. Nature 585, 357–362 (2020). DOI: <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">0.1038/s41586-020-2649-2</a></p></td>
+<td><p>~= 1.26</p></td>
+<td><p>Harris, C.R., Millman, K.J., van der Walt, S.J. et al. Array programming with NumPy. Nature 585, 357–362 (2020). DOI: <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">10.1038/s41586-020-2649-2</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/tqdm/tqdm">tqdm</a></p></td>
-<td><p>&gt;= 4.67.0</p></td>
-<td><p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.595120">10.5281/zenodo.595120</a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a></p></td>
-<td><p>&gt;= 2.2.0</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a></p></td>
+<td><p>~= 2.2</p></td>
 <td><p>McKinney W. 2010. Data Structures for Statistical Computing in Python. Proceedings of the 9th Python in Science Conference, 51-56.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a></p></td>
-<td><p>&gt;= 1.6.1</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a></p></td>
+<td><p>== 1.6.1</p></td>
 <td><p>Pedregosa F, et al. 2011. Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12, 2825-2830.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://joblib.readthedocs.io/en/latest/">joblib</a></p></td>
-<td><p>&gt;= 1.3.2</p></td>
-<td><p>Joblib: <a class="reference external" href="https://joblib.readthedocs.io/en/latest/">https://joblib.readthedocs.io/en/latest/</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.scipy.org/">scipy</a></p></td>
-<td><p>&gt;= 1.12.0</p></td>
-<td><p>Virtanen P, et al. 2020. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272 (2020). DOI: <a class="reference external" href="https://doi.org/10.1038/s41592-019-0686-2">10.1038/s41592-019-0686-2</a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="http://rasbt.github.io/mlxtend/">mlxtend</a></p></td>
-<td><p>&gt;= 0.22.0</p></td>
-<td><p>Raschka S. 2018. MLxtend: Providing machine learning and data science utilities and extensions to Python’s scientific computing stack. Journal of Open Source Software, 3(24), 638, <a class="reference external" href="https://doi.org/10.21105/joss.00638">https://doi.org/10.21105/joss.00638</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://plotly.com/">plotly</a></p></td>
-<td><p>&gt;= 5.15.0</p></td>
-<td><p>Plotly Technologies Inc. 2015. Collaborative data science. Montréal, QC: Plotly Technologies Inc. <a class="reference external" href="https://plot.ly">https://plot.ly</a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://xgboost.readthedocs.io/en/stable/">xgboost</a></p></td>
-<td><p>&gt;= 2.0.0</p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://xgboost.readthedocs.io/en/stable/">xgboost</a></p></td>
+<td><p>== 2.1.4</p></td>
 <td><p>Chen T, et al. 2016. XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794. DOI: <a class="reference external" href="https://doi.org/10.1145/2939672.2939785">10.1145/2939672.2939785</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/">lightgbm</a></p></td>
-<td><p>&gt;= 3.3.5</p></td>
-<td><p>Ke G, et al. 2017. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. Advances in Neural Information Processing Systems, 30, 3146–3154.</p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://joblib.readthedocs.io/en/latest/">joblib</a></p></td>
+<td><p>~= 1.3</p></td>
+<td><p>Joblib: <a class="reference external" href="https://joblib.readthedocs.io/en/latest/">https://joblib.readthedocs.io/en/latest/</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://docs.python-requests.org/en/latest/">requests</a></p></td>
-<td><p>&gt;= 2.31.0</p></td>
-<td><p>Reitz K. and Kenneth Reitz. 2023. Requests: HTTP for Humans. <a class="reference external" href="https://docs.python-requests.org/en/latest/">https://docs.python-requests.org/en/latest/</a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/tqdm/tqdm">tqdm</a></p></td>
+<td><p>~= 4.67</p></td>
+<td><p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.595120">10.5281/zenodo.595120</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://plotly.com/">plotly</a></p></td>
+<td><p>~= 5.15</p></td>
+<td><p>Plotly Technologies Inc. 2015. Collaborative data science. Montréal, QC: Plotly Technologies Inc. <a class="reference external" href="https://plot.ly">https://plot.ly</a></p></td>
 </tr>
 </tbody>
 </table>
-<p>Please cite these libraries if you use gTranslate in your work.</p>
+<p>scikit-learn and XGBoost are pinned to exact versions as the gTranslate models were saved with these versions
+and may not load correctly with other versions.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">lightgbm</span></code>, <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code>, <code class="docutils literal notranslate"><span class="pre">requests</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy</span></code> packages are also currently installed as dependencies,
+but are not used by gTranslate.</p>
+<p>Please cite the libraries above if you use gTranslate in your work.</p>
 </section>
 <section id="third-party-software">
 <span id="installing-third-party-software"></span><h2>Third-party software<a class="headerlink" href="#third-party-software" title="Link to this heading"></a></h2>
@@ -232,21 +223,25 @@ If you are unsure which one to choose, Bioconda is generally the easiest.</p>
 </section>
 <section id="gtranslate-models">
 <span id="installing-gtranslate-models"></span><h2>gTranslate Models<a class="headerlink" href="#gtranslate-models" title="Link to this heading"></a></h2>
-<p>Due to file size limits, most of the gTranslate models (including the R220 and R232 classifiers) are provided as a separate download.</p>
+<p>Due to file size limits, the gTranslate models are provided as a separate download. gTranslate 0.0.4 and later
+use the same models; models downloaded for earlier versions are not compatible.</p>
 <section id="downloading-the-models">
 <h3>Downloading the Models<a class="headerlink" href="#downloading-the-models" title="Link to this heading"></a></h3>
-<p>We provide three mirrors for downloading the classifiers. For optimal speeds, choose the mirror geographically closest to you:</p>
+<p>The models are available from three mirrors. For optimal speeds, choose the mirror geographically closest to you:</p>
 <ul class="simple">
 <li><p><strong>Europe (GTDB Main):</strong> <a class="reference external" href="https://data.gtdb.aau.ecogenomic.org/tools/gtranslate/">https://data.gtdb.aau.ecogenomic.org/tools/gtranslate/</a></p></li>
 <li><p><strong>Australia (UQ Nectar):</strong> <a class="reference external" href="https://data.gtdb.ecogenomic.org/tools/gtranslate/">https://data.gtdb.ecogenomic.org/tools/gtranslate/</a></p></li>
 <li><p><strong>Australia (UQ ACE):</strong> <a class="reference external" href="https://data.ace.uq.edu.au/public/gtdb/tools/gtranslate/">https://data.ace.uq.edu.au/public/gtdb/tools/gtranslate/</a></p></li>
 </ul>
-<p>You can download and extract the archive directly from the command line. Choose <strong>one</strong> of the following commands based on your preferred mirror:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download from GTDB (Australia)</span>
-wget<span class="w"> </span>https://data.gtdb.ecogenomic.org/tools/gtranslate/gtranslate_models.tar.gz
+<p>Download the archive from <strong>one</strong> of the mirrors and extract it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Europe (GTDB Main)</span>
+wget<span class="w"> </span>https://data.gtdb.aau.ecogenomic.org/tools/gtranslate/gtranslate_models.tar.gz
 
-<span class="c1"># OR Download from Aalborg University (Europe)</span>
-<span class="c1"># wget https://data.gtdb.aau.ecogenomic.org/tools/gtranslate/gtranslate_models.tar.gz</span>
+<span class="c1"># OR Australia (UQ Nectar)</span>
+<span class="c1"># wget https://data.gtdb.ecogenomic.org/tools/gtranslate/gtranslate_models.tar.gz</span>
+
+<span class="c1"># OR Australia (UQ ACE)</span>
+<span class="c1"># wget https://data.ace.uq.edu.au/public/gtdb/tools/gtranslate/gtranslate_models.tar.gz</span>
 
 <span class="c1"># Extract the downloaded archive</span>
 tar<span class="w"> </span>xvzf<span class="w"> </span>gtranslate_models.tar.gz
@@ -255,7 +250,17 @@ tar<span class="w"> </span>xvzf<span class="w"> </span>gtranslate_models.tar.gz
 </section>
 <section id="configuring-the-model-path">
 <h3>Configuring the Model Path<a class="headerlink" href="#configuring-the-model-path" title="Link to this heading"></a></h3>
-<p>gTranslate requires the <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> environment variable to be set to the directory containing the unarchived reference data.</p>
+<p>gTranslate requires the <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> environment variable, or the <code class="docutils literal notranslate"><span class="pre">--custom_model_path</span></code> argument
+of <code class="docutils literal notranslate"><span class="pre">detect_table</span></code>, to point to the directory containing the extracted model files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ada_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knn_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlp_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xgb_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label_encoder.pkl.gz</span></code></p></li>
+</ul>
+<p>Run <a class="reference internal" href="../commands/check_install.html#commands-check-install"><span class="std std-ref">check_install</span></a> to verify that the model files are found.</p>
 <p>For detailed instructions on setting this variable, please refer to the documentation for your specific setup:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="pip.html#installing-pip"><span class="std std-ref">pip installation</span></a></p></li>

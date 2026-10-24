@@ -23,8 +23,8 @@ Files output
 
 * :ref:`label_encoder.pkl.gz <files/label_encoder.pkl.gz>`
 * :ref:`[model]_multi_class.pkl.gz <files/model_multi_class.pkl.gz>`
-* :ref:`[prefix].log <files/gtranslate.log>`
-* :ref:`[prefix].warnings.log <files/gtranslate.warnings.log>`
+* :ref:`gtranslate.log <files/gtranslate.log>`
+* :ref:`gtranslate.warnings.log <files/gtranslate.warnings.log>`
 
 Example
 -------

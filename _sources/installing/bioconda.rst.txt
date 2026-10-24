@@ -23,8 +23,8 @@ specify those channels in that order!
 Step 3: Download and alias the gTranslate models
 ------------------------------------------------
 
-gTranslate accept both an environment variable named ``GTRANSLATE_MODEL_PATH`` to be set to the directory
-containing the models or accept a flag called `--custom_model_path` that points to the directory containing the models.
+gTranslate locates the models using the ``GTRANSLATE_MODEL_PATH`` environment variable, which must be set to the
+directory containing the models. Alternatively, the ``--custom_model_path`` argument of ``detect_table`` can be used.
 
 You can automatically alias ``GTRANSLATE_MODEL_PATH`` whenever the environment is activated by
 `setting environment-specific variables <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables>`_, e.g.:

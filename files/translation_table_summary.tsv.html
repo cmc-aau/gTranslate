@@ -76,6 +76,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Files</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="called_genes.html">Called genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="failed_genomes.tsv.html">failed_genomes.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature_summary.tsv.html">feature_summary.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ground_truth_results.tsv.html">ground_truth_results.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gtranslate.log.html">gtranslate.log</a></li>
@@ -84,6 +86,8 @@
 <li class="toctree-l2"><a class="reference internal" href="label_encoder.pkl.gz.html">label_encoder.pkl.gz</a></li>
 <li class="toctree-l2"><a class="reference internal" href="model_multi_class.pkl.gz.html">model_multi_class.pkl.gz</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">translation_table_summary.tsv</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prediction-and-confidence">Prediction and confidence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#warnings">Warnings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#produced-by">Produced by</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
@@ -124,23 +128,53 @@
              
   <section id="translation-table-summary-tsv">
 <span id="files-translation-table-summary-tsv"></span><h1>translation_table_summary.tsv<a class="headerlink" href="#translation-table-summary-tsv" title="Link to this heading"></a></h1>
-<p>The output of gTranslate is provided in a tab-separated file (typically gtranslate.tsv). This file contains the final taxonomic predictions, the biological features calculated from the sequences, and the specific outputs of the machine learning ensemble.</p>
-<p>The columns in this file are as follows:
-* user_genome: Unique identifier of the query genome.
-* best_tln_table: The final predicted Genetic Translation Table (GTT). This is the “consensus” choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).
-* coding_density_4: The calculated coding density of the genome assuming the translation table is Table 4.
-* coding_density_11: The calculated coding density assuming the translation table is Table 11 (Standard code).
-* gc_percent: The percentage of Guanine and Cytosine in the genome.
-* n50: N50 of the genome assembly.
-* genome_size: The total length of the genome assembly in base pairs.
-* contig_count: The total number of contigs (fragments) in the user’s genome file.
-* confidence: A score ranging from 0.0 to 1.0 representing the level of agreement across the internal machine learning models. A score of 1.0 indicates that all classifiers in the ensemble (Adaboost, MLP, etc.) predicted the same table.
-* adaboost_pred: The specific GTT prediction made by the AdaBoost classifier.
-* decisiontree_pred: The specific GTT prediction made by the Decision Tree classifier.
-* kneighbors_pred: The specific GTT prediction made by the K-Nearest Neighbors (KNN) classifier.
-* xgb_pred: The specific GTT prediction made by the XGBoost (Extreme Gradient Boosting) classifier.
-* mlp_pred: The specific GTT prediction made by the Multi-Layer Perceptron (Neural Network) classifier.
-* warnings: Flags any unusual features or inconsistencies, such as extreme coding density differences or low confidence scores, that may suggest the prediction should be manually reviewed. “N/A” indicates no issues were detected.</p>
+<p>The main output of gTranslate: a tab-separated file containing the predicted translation table of each genome,
+summary statistics of the genome, and the prediction of each classifier in the ensemble.</p>
+<p>It is written to <code class="docutils literal notranslate"><span class="pre">predict/[prefix].translation_table_summary.tsv</span></code> (default prefix: <code class="docutils literal notranslate"><span class="pre">gtranslate</span></code>), with a
+symbolic link of the same name in the output directory. Genomes skipped because Prodigal could not call genes are
+not included (see <a class="reference internal" href="failed_genomes.tsv.html#files-failed-genomes-tsv"><span class="std std-ref">failed_genomes.tsv</span></a>).</p>
+<p>The columns in this file are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_genome</span></code>: unique identifier of the genome.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">best_tln_table</span></code>: the predicted translation table: 11 (standard bacterial code), 4 (UGA = tryptophan) or
+25 (UGA = glycine).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coding_density_4</span></code>: gene coding density (%) when predicting genes with Prodigal using translation table 4.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coding_density_11</span></code>: gene coding density (%) when predicting genes with Prodigal using translation table 11.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gc_percent</span></code>: percentage of guanine (G) and cytosine (C) nucleotides in the genome.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n50</span></code>: N50 of the genome assembly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">genome_size</span></code>: total length of the genome assembly in base pairs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contig_count</span></code>: number of contigs in the genome assembly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confidence</span></code>: support for the prediction, see <a class="reference internal" href="#files-translation-table-summary-tsv-confidence"><span class="std std-ref">below</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adaboost_pred</span></code>: translation table predicted by the AdaBoost classifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decisiontree_pred</span></code>: translation table predicted by the decision tree classifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kneighbors_pred</span></code>: translation table predicted by the k-nearest neighbours classifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xgb_pred</span></code>: translation table predicted by the XGBoost classifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlp_pred</span></code>: translation table predicted by the multi-layer perceptron classifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warnings</span></code>: semicolon-separated warnings for the genome, or <code class="docutils literal notranslate"><span class="pre">N/A</span></code> if there are none, see
+<a class="reference internal" href="#files-translation-table-summary-tsv-warnings"><span class="std std-ref">below</span></a>.</p></li>
+</ul>
+<section id="prediction-and-confidence">
+<span id="files-translation-table-summary-tsv-confidence"></span><h2>Prediction and confidence<a class="headerlink" href="#prediction-and-confidence" title="Link to this heading"></a></h2>
+<p>The translation table is predicted by majority vote of the five classifiers, and <code class="docutils literal notranslate"><span class="pre">confidence</span></code> is the
+fraction of classifiers that voted for the predicted table. When table 4 or 25 is predicted, 0.05 is added for
+each vote for the other UGA reassignment table, as these votes still support a reassignment of the UGA stop codon.
+For example, four votes for table 4 and one vote for table 25 gives a confidence of 0.85.</p>
+<p>If no table receives more than two votes, gTranslate predicts a reassignment of the UGA stop codon: table 4
+or 25, whichever received more votes, or table 4 if both received two votes. For example, votes of 11, 11, 4, 4,
+and 25 predict table 4 with a confidence of 0.45.</p>
+</section>
+<section id="warnings">
+<span id="files-translation-table-summary-tsv-warnings"></span><h2>Warnings<a class="headerlink" href="#warnings" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">warnings</span></code> column can contain the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Low</span> <span class="pre">confidence:</span> <span class="pre">maximum</span> <span class="pre">model</span> <span class="pre">agreement</span> <span class="pre">was</span> <span class="pre">only</span> <span class="pre">2/5.</span></code>: no table received more than two votes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tie</span> <span class="pre">broken:</span> <span class="pre">...</span></code>: how the prediction was made when no table received more than two votes (see above).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Used</span> <span class="pre">Prodigal</span> <span class="pre">'meta'</span> <span class="pre">mode</span> <span class="pre">fallback</span> <span class="pre">for</span> <span class="pre">TT4</span></code> (or <code class="docutils literal notranslate"><span class="pre">TT11</span></code>, <code class="docutils literal notranslate"><span class="pre">TT25</span></code>): Prodigal failed to train on the
+genome and genes were called using its metagenome mode. This can occur for small or fragmented genomes.
+Genomes under 100 kb always use metagenome mode and do not receive this warning.</p></li>
+</ul>
+<p>Predictions with warnings should be reviewed manually.</p>
+</section>
 <section id="produced-by">
 <h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
 <ul class="simple">
@@ -149,7 +183,7 @@
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>user_genome best_tln_table  coding_density_4        coding_density_11       gc_percent      n50     genome_size     contig_count    confidence      adaboost_pred   decisiontree_predkneighbors_pred        xgb_pred        mlp_pred        warnings
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>user_genome best_tln_table  coding_density_4        coding_density_11       gc_percent      n50     genome_size     contig_count    confidence      adaboost_pred   decisiontree_pred       kneighbors_pred xgb_pred        mlp_pred        warnings
 GCA_000145705.TT4   4       90.29257        64.14511        25.88353        839615  839615  1       1.0     4       4       4       4       4       N/A
 GCA_027046965.1_TT25        25      94.21967        56.0663 32.96163        50860   854813  32      1.0     25      25      25      25      25      N/A
 GCA_910575315.1_TT11        11      87.75128        87.91231        44.09593        73133   4990987 224     1.0     11      11      11      11      11      N/A

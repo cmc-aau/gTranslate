@@ -76,6 +76,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Files</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="called_genes.html">Called genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="failed_genomes.tsv.html">failed_genomes.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature_summary.tsv.html">feature_summary.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ground_truth_results.tsv.html">ground_truth_results.tsv</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">gtranslate.log</a><ul>
@@ -123,11 +125,16 @@
              
   <section id="gtranslate-log">
 <span id="files-gtranslate-log"></span><h1>gtranslate.log<a class="headerlink" href="#gtranslate-log" title="Link to this heading"></a></h1>
-<p>The console output of gTranslate saved to disk.</p>
+<p>The console output of gTranslate saved to disk. It is written to the output directory as <code class="docutils literal notranslate"><span class="pre">gtranslate.log</span></code>
+(regardless of <code class="docutils literal notranslate"><span class="pre">--prefix</span></code>) by commands with an <code class="docutils literal notranslate"><span class="pre">--out_dir</span></code> argument. Output from subsequent runs in the same
+output directory is appended to the file.</p>
 <section id="produced-by">
 <h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
 <ul class="simple">
+<li><p><a class="reference internal" href="../commands/build_features.html#commands-build-features"><span class="std std-ref">build_features</span></a></p></li>
 <li><p><a class="reference internal" href="../commands/detect_table.html#commands-detect-table"><span class="std std-ref">detect_table</span></a></p></li>
+<li><p><a class="reference internal" href="../commands/fit_models.html#commands-fit-models"><span class="std std-ref">fit_models</span></a></p></li>
+<li><p><a class="reference internal" href="../commands/test.html#commands-test"><span class="std std-ref">test</span></a></p></li>
 </ul>
 </section>
 </section>

@@ -76,6 +76,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Files</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="called_genes.html">Called genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="failed_genomes.tsv.html">failed_genomes.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature_summary.tsv.html">feature_summary.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ground_truth_results.tsv.html">ground_truth_results.tsv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gtranslate.log.html">gtranslate.log</a></li>
@@ -123,7 +125,17 @@
              
   <section id="model-multi-class-pkl-gz">
 <span id="files-model-multi-class-pkl-gz"></span><h1>model_multi_class.pkl.gz<a class="headerlink" href="#model-multi-class-pkl-gz" title="Link to this heading"></a></h1>
-<p>K-nearest neighbors, AdaBoost, LightGBM, MLP, and decision tree multi-class classification models trained to predict translation tables using features produced by gTranslate.</p>
+<p>The five multi-class classifiers trained to predict the translation table from the features produced by gTranslate,
+saved as compressed scikit-learn pipelines:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ada_multi_class.pkl.gz</span></code>: AdaBoost</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt_multi_class.pkl.gz</span></code>: decision tree</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knn_multi_class.pkl.gz</span></code>: k-nearest neighbours</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlp_multi_class.pkl.gz</span></code>: multi-layer perceptron</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xgb_multi_class.pkl.gz</span></code>: XGBoost</p></li>
+</ul>
+<p>Together with <a class="reference internal" href="label_encoder.pkl.gz.html#files-label-encoder-pkl-gz"><span class="std std-ref">label_encoder.pkl.gz</span></a>, these are the files <code class="docutils literal notranslate"><span class="pre">detect_table</span></code> loads
+from <code class="docutils literal notranslate"><span class="pre">--custom_model_path</span></code> or <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code>.</p>
 <section id="produced-by">
 <h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
 <ul class="simple">

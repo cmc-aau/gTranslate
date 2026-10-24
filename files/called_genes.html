@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Called genes &mdash; gTranslate 0.0.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=c9c80aa6" />
+
+  
+    <link rel="shortcut icon" href="../_static/gtranslate_favicon.png"/>
+    <link rel="canonical" href="https://cmc-aau.github.io/gTranslate/files/called_genes.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=bbaf98b3"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/custom.js?v=12edf98b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script defer data-domain="cmc-aau.github.io/gtranslate" src="https://plausible.gtdb.ecogenomic.org/js/script.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84847737-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-84847737-2');
+    </script>
+
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="failed_genomes.tsv" href="failed_genomes.tsv.html" />
+    <link rel="prev" title="Files" href="index.html" />
+ 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/gTranslate_logo_red.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../announcements.html">Announcements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Installing gTranslate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Files</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Called genes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#produced-by">Produced by</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="failed_genomes.tsv.html">failed_genomes.tsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_summary.tsv.html">feature_summary.tsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ground_truth_results.tsv.html">ground_truth_results.tsv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtranslate.log.html">gtranslate.log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtranslate.warnings.log.html">gtranslate.warnings.log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtranslate_plot.html.html">gtranslate_plot.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label_encoder.pkl.gz.html">label_encoder.pkl.gz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_multi_class.pkl.gz.html">model_multi_class.pkl.gz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="translation_table_summary.tsv.html">translation_table_summary.tsv</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gTranslate</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Files</a></li>
+      <li class="breadcrumb-item active">Called genes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/cmc-aau/gTranslate/blob/master/docs/src/files/called_genes.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="called-genes">
+<span id="files-called-genes"></span><h1>Called genes<a class="headerlink" href="#called-genes" title="Link to this heading"></a></h1>
+<p>Genes called by Prodigal under the predicted translation table. These are written to
+<code class="docutils literal notranslate"><span class="pre">predict/intermediate_results/call_genes/[genome_id]/</span></code> and deleted at the end of the run unless
+<code class="docutils literal notranslate"><span class="pre">--keep_called_genes</span></code> is specified.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[genome_id]_protein.faa</span></code>: protein sequences of the called genes in FASTA format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[genome_id]_protein.fna</span></code>: nucleotide sequences of the called genes in FASTA format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[genome_id]_protein.gff</span></code>: coordinates of the called genes in GFF format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[genome_id]_translation_table.tsv</span></code>: the prediction, confidence, warnings and features for the genome, as
+reported in <a class="reference internal" href="translation_table_summary.tsv.html#files-translation-table-summary-tsv"><span class="std std-ref">translation_table_summary.tsv</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*.sha256</span></code>: checksums of the above files, used to skip genomes that have already been processed when
+<code class="docutils literal notranslate"><span class="pre">detect_table</span></code> is re-run with the same output directory.</p></li>
+</ul>
+<section id="produced-by">
+<h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../commands/detect_table.html#commands-detect-table"><span class="std std-ref">detect_table</span></a> (with <code class="docutils literal notranslate"><span class="pre">--keep_called_genes</span></code>)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="failed_genomes.tsv.html" class="btn btn-neutral float-right" title="failed_genomes.tsv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Pierre-Alain Chaumeil and Donovan Parks.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

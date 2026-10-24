@@ -134,7 +134,7 @@
 <h2>Step 2: Install gTranslate via pip<a class="headerlink" href="#step-2-install-gtranslate-via-pip" title="Link to this heading"></a></h2>
 <p>Note: It is strongly recommended to create a <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">virtual environment</a>
 for each version of gTranslate installed.</p>
-<p>Once the third-party dependencies have been installed, install gTranslate via <a href="#id1"><span class="problematic" id="id2">`pip https://pypi.org/project/gtdb-gtranslate/`_</span></a>:</p>
+<p>Once the third-party dependencies have been installed, install gTranslate via <a class="reference external" href="https://pypi.org/project/gtdb-gtranslate/">pip</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>gtdb-gtranslate
 </pre></div>
 </div>
@@ -145,8 +145,8 @@ for each version of gTranslate installed.</p>
 </section>
 <section id="step-3-download-and-alias-the-gtranslate-models">
 <h2>Step 3: Download and alias the gTranslate models<a class="headerlink" href="#step-3-download-and-alias-the-gtranslate-models" title="Link to this heading"></a></h2>
-<p>gTranslate accept both an environment variable named <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> to be set to the directory
-containing the models or accept a flag called <cite>–custom_model_path</cite> that points to the directory containing the models.</p>
+<p>gTranslate locates the models using the <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> environment variable, which must be set to the
+directory containing the models. Alternatively, the <code class="docutils literal notranslate"><span class="pre">--custom_model_path</span></code> argument of <code class="docutils literal notranslate"><span class="pre">detect_table</span></code> can be used.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">GTRANSLATE_MODEL_PATH</span><span class="o">=</span>/path/to/models/
 </pre></div>
 </div>

@@ -22,8 +22,10 @@ Files output
 
 * :ref:`[prefix].translation_table_summary.tsv <files/translation_table_summary.tsv>`
 * :ref:`[prefix].feature_summary.tsv <files/feature_summary.tsv>`
-* :ref:`[prefix].log <files/gtranslate.log>`
-* :ref:`[prefix].warnings.log <files/gtranslate.warnings.log>`
+* :ref:`[prefix].failed_genomes.tsv <files/failed_genomes.tsv>`
+* :ref:`Called genes <files/called_genes>` (with ``--keep_called_genes``)
+* :ref:`gtranslate.log <files/gtranslate.log>`
+* :ref:`gtranslate.warnings.log <files/gtranslate.warnings.log>`
 
 
 Example

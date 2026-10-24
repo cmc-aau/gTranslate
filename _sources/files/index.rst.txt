@@ -9,6 +9,8 @@ The following files are output by gTranslate throughout various stages of the pi
 .. toctree::
    :maxdepth: 1
 
+   called_genes
+   failed_genomes.tsv
    feature_summary.tsv
    ground_truth_results.tsv
    gtranslate.log

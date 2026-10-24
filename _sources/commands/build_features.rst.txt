@@ -21,8 +21,9 @@ Files output
 ------------
 
 * :ref:`gtranslate_training.feature_summary.tsv <files/feature_summary.tsv>`
-* :ref:`[prefix].log <files/gtranslate.log>`
-* :ref:`[prefix].warnings.log <files/gtranslate.warnings.log>`
+* :ref:`gtranslate_training.failed_genomes.tsv <files/failed_genomes.tsv>`
+* :ref:`gtranslate.log <files/gtranslate.log>`
+* :ref:`gtranslate.warnings.log <files/gtranslate.warnings.log>`
 
 
 Example

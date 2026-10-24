@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ground_truth_results.tsv" href="ground_truth_results.tsv.html" />
-    <link rel="prev" title="Files" href="index.html" />
+    <link rel="prev" title="failed_genomes.tsv" href="failed_genomes.tsv.html" />
  
 </head>
 
@@ -76,6 +76,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Files</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="called_genes.html">Called genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="failed_genomes.tsv.html">failed_genomes.tsv</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">feature_summary.tsv</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#produced-by">Produced by</a></li>
 </ul>
@@ -123,18 +125,34 @@
              
   <section id="feature-summary-tsv">
 <span id="files-feature-summary-tsv"></span><h1>feature_summary.tsv<a class="headerlink" href="#feature-summary-tsv" title="Link to this heading"></a></h1>
-<p>The tab-delimited file containing the summary of features for each genome in the training dataset.</p>
-<p>The columns in this file are as follows:
-* user_genome ( or genome ID for <code class="docutils literal notranslate"><span class="pre">build_features</span></code>): Unique identifier of the query genome.
-* best_tln_table ( missing for <code class="docutils literal notranslate"><span class="pre">build_features</span></code>): The final predicted Genetic Translation Table (GTT). This is the “consensus” choice recommended by the tool (e.g., 11 for standard, 4 for UGA=Trp, or 25 for UGA=Gly).
-* Coding_density_4: gene coding density when predicting genes with Prodigal using translation table 4 or equivalently 25 which reassigned the UGA stop coding to either tryptophan or glycine.
-* Coding_density_11: gene coding density when predicting genes with Prodigal (Hyatt et al., 2010) using translation table 11.
-* Density_Diff: the difference in coding density when using translation table 4/25 or translation table 11, i.e. CD4 – CD11.
-* GC: percentage of guanine (G) and cytosine (C) nucleotides in a genome.
-* Trp_ratio: log-transformed ratio of UGA to UGG codon counts when predicting genes with Prodigal under translation table 4. The log ratio is clipped between -6 and 5 to remove extreme outliers.
-* Trp_magnitude: log-transformed count of all UGA and UGG tryptophan codons when predicting genes with Prodigal under translation table 4.
-* Gly_ratio: log-transformed ratio of UGA codon counts to the total glycine codon counts (i.e. codons GGn) when predicting genes with Prodigal under translation table 4. The log ratio is clipped between -10 and 0 to remove extreme outliers.
-* UGG_density: ratio of UGG tryptophan codons to glycine codons (GGn) when predicting genes with Prodigal under translation table 4.</p>
+<p>Tab-separated file containing the eight features used by the classifiers for each genome.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">detect_table</span></code> writes it to <code class="docutils literal notranslate"><span class="pre">predict/[prefix].feature_summary.tsv</span></code> (default prefix: <code class="docutils literal notranslate"><span class="pre">gtranslate</span></code>),
+with a symbolic link of the same name in the output directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build_features</span></code> writes it to <code class="docutils literal notranslate"><span class="pre">gtranslate_training.feature_summary.tsv</span></code> in the output directory. This
+is the file to provide to <code class="docutils literal notranslate"><span class="pre">fit_models</span></code>.</p></li>
+</ul>
+<p>Genomes skipped because Prodigal could not call genes are not included (see
+<a class="reference internal" href="failed_genomes.tsv.html#files-failed-genomes-tsv"><span class="std std-ref">failed_genomes.tsv</span></a>). Values are rounded to 5 decimal places.</p>
+<p>The columns in this file are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_genome</span></code> (<code class="docutils literal notranslate"><span class="pre">Genome</span> <span class="pre">ID</span></code> for <code class="docutils literal notranslate"><span class="pre">build_features</span></code>): unique identifier of the genome.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predicted_tln_table</span></code> (<code class="docutils literal notranslate"><span class="pre">detect_table</span></code> only): the predicted translation table (4, 11 or 25).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Coding_density_4</span></code>: gene coding density (%) when predicting genes with Prodigal using translation table 4,
+or equivalently 25, which reassign the UGA stop codon to tryptophan or glycine, respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Coding_density_11</span></code>: gene coding density (%) when predicting genes with Prodigal (Hyatt et al., 2010) using
+translation table 11.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Density_Diff</span></code>: the difference in coding density between translation table 4/25 and translation table 11,
+i.e. <code class="docutils literal notranslate"><span class="pre">Coding_density_4</span></code> - <code class="docutils literal notranslate"><span class="pre">Coding_density_11</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GC</span></code>: percentage of guanine (G) and cytosine (C) nucleotides in the genome.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Trp_ratio</span></code>: natural log of (UGA + 1) / (UGG + 1), where UGA and UGG are the number of in-frame codons in genes
+predicted under translation table 4. Clipped between -6 and 5 to remove extreme outliers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Trp_magnitude</span></code>: natural log of (UGA + UGG + 1) in genes predicted under translation table 4.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Gly_ratio</span></code>: natural log of (UGA + 1) / (GGN + 1), where GGN is the number of glycine codons in genes
+predicted under translation table 4. Clipped between -10 and 0 to remove extreme outliers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UGG_density</span></code>: ratio of UGG tryptophan codons to GGN glycine codons in genes predicted under translation
+table 4.</p></li>
+</ul>
 <section id="produced-by">
 <h2>Produced by<a class="headerlink" href="#produced-by" title="Link to this heading"></a></h2>
 <ul class="simple">
@@ -148,7 +166,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="failed_genomes.tsv.html" class="btn btn-neutral float-left" title="failed_genomes.tsv" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ground_truth_results.tsv.html" class="btn btn-neutral float-right" title="ground_truth_results.tsv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

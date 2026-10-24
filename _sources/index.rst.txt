@@ -1,6 +1,6 @@
-*******
+**********
 gTranslate
-*******
+**********
 
 **gTranslate** is a machine learning-based command-line tool for predicting the translation table (TT) used by prokaryotic genomes. By analyzing specific sequence features — such as coding density differences, Trp ratios, and Gly ratios — `gTranslate` can accurately distinguish between the genetic codes associated with reassignment of the UGA stop codon, i.e. translation tables 11 (standard prokaryotic code), 4 (UGA=Trp), and 25 (UGA=Gly).
 
