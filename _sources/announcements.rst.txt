@@ -1,6 +1,15 @@
 Announcements
 =============
 
+gTranslate 0.0.6
+----------------
+
+*October, 2026*
+
+* Fixed the genes reported for gzipped genomes predicted to use translation table 25 when
+  ``--keep_called_genes`` is used. Predicted translation tables were not affected.
+* ``check_install`` now also verifies that the gTranslate models are present.
+
 gTranslate 0.0.5
 ----------------
 
