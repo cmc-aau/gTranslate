@@ -2,8 +2,6 @@
 gTranslate
 *******
 
-**gTranslate is under active development and is not yet available for public use.**
-
 **gTranslate** is a machine learning-based command-line tool for predicting the translation table (TT) used by prokaryotic genomes. By analyzing specific sequence features — such as coding density differences, Trp ratios, and Gly ratios — `gTranslate` can accurately distinguish between the genetic codes associated with reassignment of the UGA stop codon, i.e. translation tables 11 (standard prokaryotic code), 4 (UGA=Trp), and 25 (UGA=Gly).
 
 gTranslate is open source and released under the
@@ -18,7 +16,7 @@ Please post questions and issues related to gTranslate on the Issues section of 
 Running gTranslate
 ==================
 
-1. Install gTranslate (or use the third-party web application) (:ref:`installing`)
+1. Install gTranslate and download the models (:ref:`installing`)
 
 2. Access the help documentation :ref:`commands`, or view the program help menu: ``gtranslate -h``
 
@@ -27,7 +25,11 @@ Running gTranslate
 
 Citing gTranslate
 =================
-We encourage you to cite gTranslate and the third-party dependencies as described in :ref:`references`.
+If you use gTranslate, please cite:
+
+    Chaumeil P-A, Hugenholtz P, Parks DH. 2026. `gTranslate: rapid and accurate translation table prediction for prokaryotic genomes <https://doi.org/10.7717/peerj.21825>`_. *PeerJ* 14:e21825. https://doi.org/10.7717/peerj.21825
+
+We also encourage you to cite the third-party dependencies as described in :ref:`references`.
 
 
 .. toctree::
@@ -45,7 +47,6 @@ We encourage you to cite gTranslate and the third-party dependencies as describe
 
    commands/index
    files/index
-   examples/detect_table
 
 
 .. toctree::

@@ -38,7 +38,7 @@ Output
 
 .. code-block:: text
 
-    [2026-04-27 22:30:33] INFO: gTranslate v0.0.2
+    [2026-04-27 22:30:33] INFO: gTranslate v{{ gtranslate_version }}
     [2026-04-27 22:30:33] INFO: gtranslate generate_plot --feature_file gtranslate_featured.tsv --output_file gtranslate_plot.html
     [2026-04-27 22:30:33] INFO: Running generate_plot
     [2026-04-27 22:30:49] INFO: Interactive HTML dashboard generated: gtranslate_plot.html

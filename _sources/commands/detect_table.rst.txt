@@ -41,7 +41,7 @@ Output
 
 .. code-block:: text
 
-    [2026-03-05 20:36:09] INFO: gTranslate v0.0.2
+    [2026-03-05 20:36:09] INFO: gTranslate v{{ gtranslate_version }}
     [2026-03-05 20:36:09] INFO: gtranslate detect_table --genome_dir test_command/genomes --out_dir test_command/output_multi --cpus 3
     [2026-03-05 20:36:09] INFO: Running detect_table
     [2026-03-05 20:36:10] TASK: Running Prodigal V2.6.3 to identify genes.

@@ -3,7 +3,15 @@
 References
 ==========
 
-**gTranslate manuscript is in progress:**
+**gTranslate is described in:**
+
+.. list-table::
+   :widths: 100
+   :header-rows: 0
+
+   * - Chaumeil P-A, Hugenholtz P, Parks DH. 2026. `gTranslate: rapid and accurate translation table prediction for prokaryotic genomes <https://doi.org/10.7717/peerj.21825>`_. *PeerJ* 14:e21825. https://doi.org/10.7717/peerj.21825
+
+Supplementary data for the manuscript are available on Zenodo: https://doi.org/10.5281/zenodo.20761714
 
 **The Genome Taxonomy Database (GTDB) is described in:**
 

@@ -73,6 +73,7 @@
 <p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul>
@@ -104,13 +105,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: replace 0.0.5 with the version you wish to install</span>
+  <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># using mamba (recommended)</span>
+mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.5
 
-<span class="c1"># using conda</span>
+<span class="c1"># or using conda</span>
 conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.5
 
-<span class="c1"># using mamba (alternative)</span>
-mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.5
+<span class="c1"># activate the environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>gtranslate-0.0.5
 </pre></div>
 </div>
 

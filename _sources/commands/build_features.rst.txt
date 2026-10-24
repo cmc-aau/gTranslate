@@ -40,7 +40,7 @@ Output
 
 .. code-block:: text
 
-    [2026-04-09 23:09:40] INFO: gTranslate v0.0.2
+    [2026-04-09 23:09:40] INFO: gTranslate v{{ gtranslate_version }}
     [2026-04-09 23:09:40] INFO: gtranslate build_features --batchfile 1000genomes/5K_batchfile.tsv --out_dir features_test --cpus 90
     [2026-04-09 23:09:40] INFO: Generating feature vectors for training models.
     [2026-04-09 23:10:45] TASK: Running Prodigal V2.6.3 to identify genes.

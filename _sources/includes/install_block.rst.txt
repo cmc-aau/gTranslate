@@ -1,9 +1,10 @@
 .. code-block:: bash
 
-    # NOTE: replace 0.0.5 with the version you wish to install
+    # using mamba (recommended)
+    mamba create -n gtranslate-0.0.5 -c conda-forge -c bioconda gtdb-gtranslate=0.0.5
 
-    # using conda
+    # or using conda
     conda create -n gtranslate-0.0.5 -c conda-forge -c bioconda gtdb-gtranslate=0.0.5
 
-    # using mamba (alternative)
-    mamba create -n gtranslate-0.0.5 -c conda-forge -c bioconda gtdb-gtranslate=0.0.5
+    # activate the environment
+    conda activate gtranslate-0.0.5

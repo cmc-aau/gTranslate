@@ -91,6 +91,7 @@
 <p class="caption" role="heading"><span class="caption-text">Running gTranslate</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul>
@@ -134,13 +135,14 @@
 <p>It is strongly recommended to create a new conda environment for each version of gTranslate released.</p>
 <p>gTranslate requires third-party packages from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> and <code class="docutils literal notranslate"><span class="pre">bioconda</span></code> channels, make sure to
 specify those channels in that order!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># NOTE: replace 0.0.5 with the version you wish to install</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># using mamba (recommended)</span>
+mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.5
 
-<span class="c1"># using conda</span>
+<span class="c1"># or using conda</span>
 conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.5
 
-<span class="c1"># using mamba (alternative)</span>
-mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gtranslate-0.0.5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>gtdb-gtranslate<span class="o">=</span><span class="m">0</span>.0.5
+<span class="c1"># activate the environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>gtranslate-0.0.5
 </pre></div>
 </div>
 </section>
@@ -151,12 +153,25 @@ containing the models or accept a flag called <cite>–custom_model_path</cite> 
 <p>You can automatically alias <code class="docutils literal notranslate"><span class="pre">GTRANSLATE_MODEL_PATH</span></code> whenever the environment is activated by
 <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables">setting environment-specific variables</a>, e.g.:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate the gTranslate conda environment</span>
-conda<span class="w"> </span>activate<span class="w"> </span>gtdb-gtranslate-0.0.5
+conda<span class="w"> </span>activate<span class="w"> </span>gtranslate-0.0.5
 
-<span class="c1"># Set the environment variable to the directory containing the gTranslate model classifiers</span>
-conda<span class="w"> </span>env<span class="w"> </span>config<span class="w"> </span>vars<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GTRANSLATE_MODEL_PARTH</span><span class="o">=</span><span class="s2">"/path/to/unarchived/gtranslate/models"</span><span class="p">;</span>
+<span class="c1"># Set the environment variable to the directory containing the gTranslate models</span>
+conda<span class="w"> </span>env<span class="w"> </span>config<span class="w"> </span>vars<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">GTRANSLATE_MODEL_PATH</span><span class="o">=</span><span class="s2">"/path/to/unarchived/gtranslate/models/"</span>
+
+<span class="c1"># Re-activate the environment for the variable to take effect</span>
+conda<span class="w"> </span>deactivate
+conda<span class="w"> </span>activate<span class="w"> </span>gtranslate-0.0.5
 </pre></div>
 </div>
+<p>The directory must contain the following files (see <a class="reference internal" href="index.html#installing-gtranslate-models"><span class="std std-ref">gTranslate Models</span></a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ada_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knn_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mlp_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xgb_multi_class.pkl.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">label_encoder.pkl.gz</span></code></p></li>
+</ul>
 </section>
 </section>
 

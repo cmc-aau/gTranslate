@@ -97,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="test.html">test</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Files</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul>
@@ -189,11 +190,8 @@ Once it’s done, you’ll have fresh model files ready for the <code class="doc
 </section>
 <section id="output">
 <h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<p>[2026-04-10 19:22:07] INFO: gTranslate v0.0.2
-[2026-04-10 19:22:07] INFO: gtranslate fit_models –feature_file features_test/gtranslate_training.feature_summary.tsv –tt_file 1000genomes/5000_genomes_r226.tsv –out_dir models
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[2026-04-10 19:22:07] INFO: gTranslate v0.0.5
+[2026-04-10 19:22:07] INFO: gtranslate fit_models --feature_file features_test/gtranslate_training.feature_summary.tsv --tt_file 1000genomes/5000_genomes_r226.tsv --out_dir models
 [2026-04-10 19:22:07] INFO: Training models based on training data.
 [2026-04-10 19:22:07] INFO: We use seed: 427
 [2026-04-10 19:22:07] INFO: All feature columns present in input. Skipping feature engineering.
@@ -206,24 +204,31 @@ Once it’s done, you’ll have fresh model files ready for the <code class="doc
 3          83.01639           91.96291      -8.94652  71.41138   -1.36587        9.99150   -3.37393      0.13424
 4          84.64863           86.23985      -1.59122  56.69494   -1.90344       10.05767   -3.46512      0.20978
 [2026-04-10 19:22:07] INFO: Class counts: [4988    3    9]
-[2026-04-10 19:22:07] INFO: Class weights mapping: {‘11’: 0.33413525795241916, ‘25’: 555.5555555555555, ‘4’: 185.1851851851852}
+[2026-04-10 19:22:07] INFO: Class weights mapping: {'11': 0.33413525795241916, '25': 555.5555555555555, '4': 185.1851851851852}
 [2026-04-10 19:22:07] INFO: Using the full training data
-[2026-04-10 19:22:07] INFO: — Training KNeighbors —
+[2026-04-10 19:22:07] INFO: --- Training KNeighbors ---
 [2026-04-10 19:22:07] INFO: Saved and compressed KNeighbors pipeline to models/knn_multi_class.pkl.gz
-[2026-04-10 19:22:07] INFO: Balanced accuracy for KNeighbors: 0.8889</p>
-<p>[2026-04-10 19:22:07] INFO: — Training AdaBoost —
+[2026-04-10 19:22:07] INFO: Balanced accuracy for KNeighbors: 0.8889
+
+[2026-04-10 19:22:07] INFO: --- Training AdaBoost ---
 [2026-04-10 19:22:07] INFO: Saved and compressed AdaBoost pipeline to models/ada_multi_class.pkl.gz
-[2026-04-10 19:22:07] INFO: Balanced accuracy for AdaBoost: 1.0000</p>
-<p>[2026-04-10 19:22:07] INFO: — Training XGBoost —
+[2026-04-10 19:22:07] INFO: Balanced accuracy for AdaBoost: 1.0000
+
+[2026-04-10 19:22:07] INFO: --- Training XGBoost ---
 [2026-04-10 19:22:08] INFO: Saved and compressed XGBoost pipeline to models/xgb_multi_class.pkl.gz
-[2026-04-10 19:22:08] INFO: Balanced accuracy for XGBoost: 0.8889</p>
-<p>[2026-04-10 19:22:08] INFO: — Training MLP —
+[2026-04-10 19:22:08] INFO: Balanced accuracy for XGBoost: 0.8889
+
+[2026-04-10 19:22:08] INFO: --- Training MLP ---
 [2026-04-10 19:22:08] INFO: Saved and compressed MLP pipeline to models/mlp_multi_class.pkl.gz
-[2026-04-10 19:22:08] INFO: Balanced accuracy for MLP: 0.3333</p>
-<p>[2026-04-10 19:22:08] INFO: — Training DecisionTree —
+[2026-04-10 19:22:08] INFO: Balanced accuracy for MLP: 0.3333
+
+[2026-04-10 19:22:08] INFO: --- Training DecisionTree ---
 [2026-04-10 19:22:08] INFO: Saved and compressed DecisionTree pipeline to models/dt_multi_class.pkl.gz
-[2026-04-10 19:22:08] INFO: Balanced accuracy for DecisionTree: 1.0000</p>
-<p>[2026-04-10 19:22:08] INFO: Done.</p>
+[2026-04-10 19:22:08] INFO: Balanced accuracy for DecisionTree: 1.0000
+
+[2026-04-10 19:22:08] INFO: Done.
+</pre></div>
+</div>
 </section>
 </section>
 </section>
