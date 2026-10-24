@@ -27,6 +27,7 @@ from tqdm import tqdm
 
 from gtranslate.biolib_lite.execute import check_dependencies
 from gtranslate.biolib_lite.common import remove_extension, check_dir_exists, check_file_exists, make_sure_path_exists
+from gtranslate.config.common import CONFIG
 from gtranslate.exceptions import GTranslateExit
 from gtranslate.files.batchfile import Batchfile
 from gtranslate.files.prodigal.tln_table_summary import TranslationSummaryFile
@@ -156,6 +157,35 @@ class OptionsParser(object):
 
         return genomic_files
 
+    @staticmethod
+    def _verify_model_files(model_dir: str) -> bool:
+        """Ensure all model files are present in the model directory.
+
+        Parameters
+        ----------
+        model_dir : str
+            Directory containing the gTranslate models.
+
+        Returns
+        -------
+        bool
+            True if all model files are present.
+
+        Raises
+        ------
+        GTranslateExit
+            If the directory or one or more model files are missing.
+        """
+        if not os.path.isdir(model_dir):
+            raise GTranslateExit(f'Model directory does not exist: {model_dir}\n'
+                                 f'Check --custom_model_path or the GTRANSLATE_MODEL_PATH environment variable.')
+        missing_files = [model_file for model_file in CONFIG.MODEL_FILES
+                         if not os.path.isfile(os.path.join(model_dir, model_file))]
+        if len(missing_files) > 0:
+            raise GTranslateExit(f'Missing model files in {model_dir}: {", ".join(missing_files)}\n'
+                                 f'Check --custom_model_path or the GTRANSLATE_MODEL_PATH environment variable.')
+        return True
+
     def detect_table(self, options):
         """Detect the genetic translation table (GTT) used in prokaryotic organisms.
 
@@ -180,8 +210,6 @@ class OptionsParser(object):
                                                        options.batchfile,
                                                        options.extension)
 
-        table_predictor = TablePredictor(options.cpus,options.custom_model_path)
-
         if not options.custom_model_path and not os.getenv('GTRANSLATE_MODEL_PATH'):
             self.logger.error(
                 "Configuration Error: No model path specified.\n"
@@ -189,6 +217,12 @@ class OptionsParser(object):
                 "'GTRANSLATE_MODEL_PATH' environment variable."
             )
             sys.exit(1)
+
+        # Check the models exist before running Prodigal, otherwise a missing model
+        # is only reported once genes have been called for each genome.
+        self._verify_model_files(options.custom_model_path or CONFIG.ENV_MODEL_PATH)
+
+        table_predictor = TablePredictor(options.cpus,options.custom_model_path)
 
         reports = table_predictor.predict(genomes,
                          options.out_dir,

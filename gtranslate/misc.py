@@ -105,13 +105,7 @@ class Misc(object):
         elif not self.checkfolder(model_dir, 'GTRANSLATE_MODEL_PATH'):
             ok = False
         else:
-            model_files = [CONFIG.ADA_MULTI_CLASS,
-                           CONFIG.DT_MULTI_CLASS,
-                           CONFIG.KNN_MULTI_CLASS,
-                           CONFIG.XGB_MULTI_CLASS,
-                           CONFIG.MLP_MULTI_CLASS,
-                           CONFIG.LABEL_ENCODER]
-            for model_file in model_files:
+            for model_file in CONFIG.MODEL_FILES:
                 if not self.checkfile(os.path.join(model_dir, model_file), model_file):
                     ok = False
 

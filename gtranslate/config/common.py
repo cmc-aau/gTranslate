@@ -49,6 +49,15 @@ class __GTranslateCommonConfig:
     def LABEL_ENCODER(self):
         return 'label_encoder.pkl.gz'
 
+    @property
+    def MODEL_FILES(self):
+        return [self.ADA_MULTI_CLASS,
+                self.DT_MULTI_CLASS,
+                self.KNN_MULTI_CLASS,
+                self.XGB_MULTI_CLASS,
+                self.MLP_MULTI_CLASS,
+                self.LABEL_ENCODER]
+
 # Export the class for import by other modules
 @lru_cache(maxsize=1)
 def __get_config():

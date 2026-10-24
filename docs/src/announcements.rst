@@ -8,6 +8,7 @@ gTranslate 0.0.7
 
 * ``gtranslate test`` now works on installations from PyPI and Bioconda. Previous releases did
   not include the genomes this command requires.
+* ``detect_table`` now reports missing model files before processing any genomes.
 
 gTranslate 0.0.6
 ----------------
