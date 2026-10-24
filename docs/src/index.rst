@@ -13,6 +13,23 @@ Notifications about gTranslate releases will be available through the GTDB Blues
 Please post questions and issues related to gTranslate on the Issues section of the GitHub repository.
 
 
+How gTranslate works
+====================
+
+gTranslate calls genes with Prodigal under translation tables 11 and 4, derives eight features from the
+resulting gene calls (coding densities, GC content, and the frequency of in-frame UGA codons relative to
+tryptophan and glycine codons), and predicts the translation table by majority vote across five machine
+learning classifiers.
+
+.. raw:: html
+
+   <object data="_static/gtranslate_workflow.svg" type="image/svg+xml"
+           style="width:100%;aspect-ratio:960/632" aria-label="How gTranslate predicts a translation table">
+     <img src="_static/gtranslate_workflow.svg" alt="How gTranslate predicts a translation table">
+   </object>
+
+
+
 Running gTranslate
 ==================
 
