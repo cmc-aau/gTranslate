@@ -37,7 +37,7 @@ Output
 
 .. code-block:: text
 
-    [2026-05-01 01:50:19] INFO: gTranslate v0.0.2
+    [2026-05-01 01:50:19] INFO: gTranslate v{{ gtranslate_version }}
     [2026-05-01 01:50:19] INFO: gtranslate ground_truth --taxonomy_file taxonomy_file_r226.tsv.gz --output_file ground_truth_results.tsv
     [2026-05-01 01:50:19] INFO: Selecting Ground Truth translation tables based on taxonomic classification.
     [2026-05-01 01:50:19] INFO: Determining ground truth for genomes:

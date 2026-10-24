@@ -109,31 +109,50 @@ with open(install_block_path, 'w') as f:
     f.write(f"""\
 .. code-block:: bash
 
-    # NOTE: replace {release} with the version you wish to install
+    # using mamba (recommended)
+    mamba create -n gtranslate-{release} -c conda-forge -c bioconda gtdb-gtranslate={release}
 
-    # using conda
+    # or using conda
     conda create -n gtranslate-{release} -c conda-forge -c bioconda gtdb-gtranslate={release}
 
-    # using mamba (alternative)
-    mamba create -n gtranslate-{release} -c conda-forge -c bioconda gtdb-gtranslate={release}
+    # activate the environment
+    conda activate gtranslate-{release}
 """)
 
-with open(manually_alias_models, 'a') as f:
+with open(manually_alias_models, 'w') as f:
     f.write(f"""\
 .. code-block:: bash
 
     # Activate the gTranslate conda environment
-    conda activate gtdb-gtranslate-{release}
+    conda activate gtranslate-{release}
 
-    # Set the environment variable to the directory containing the gTranslate model classifiers
-    conda env config vars set GTRANSLATE_MODEL_PARTH="/path/to/unarchived/gtranslate/models";
+    # Set the environment variable to the directory containing the gTranslate models
+    conda env config vars set GTRANSLATE_MODEL_PATH="/path/to/unarchived/gtranslate/models/"
+
+    # Re-activate the environment for the variable to take effect
+    conda deactivate
+    conda activate gtranslate-{release}
+
+The directory must contain the following files (see :ref:`installing#gtranslate-models`):
+
+* ``ada_multi_class.pkl.gz``
+* ``dt_multi_class.pkl.gz``
+* ``knn_multi_class.pkl.gz``
+* ``mlp_multi_class.pkl.gz``
+* ``xgb_multi_class.pkl.gz``
+* ``label_encoder.pkl.gz``
 """)
 
 if os.path.exists(css_override_path):
-    with open(css_override_path, 'a') as f:
+    # Remove the version block injected by a previous build before injecting it again,
+    # otherwise each local build appends another copy to this tracked file.
+    css_marker = '\n/* Dynamically injected layout fix to display version when logo_only is True */'
+    with open(css_override_path) as f:
+        css_content = f.read().split(css_marker)[0]
+    with open(css_override_path, 'w') as f:
+        f.write(css_content)
         f.write(f"""\
-
-/* Dynamically injected layout fix to display version when logo_only is True */
+{css_marker}
 .wy-side-nav-search > a::after {{
     content: "v{release}";
     display: block;
@@ -145,3 +164,14 @@ if os.path.exists(css_override_path):
 }}
 """)
 
+
+# Replace the version placeholder in all pages, including code blocks, with the version from gtranslate/__init__.py
+VERSION_PLACEHOLDER = '{{ gtranslate_version }}'
+
+
+def replace_version_placeholder(app, docname, source):
+    source[0] = source[0].replace(VERSION_PLACEHOLDER, release)
+
+
+def setup(app):
+    app.connect('source-read', replace_version_placeholder)

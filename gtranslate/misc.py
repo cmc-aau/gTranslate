@@ -20,6 +20,7 @@ import os
 
 from gtranslate.biolib_lite.execute import check_dependencies
 from gtranslate.biolib_lite.logger import colour
+from gtranslate.config.common import CONFIG
 from gtranslate.exceptions import GTranslateExit
 
 
@@ -94,5 +95,26 @@ class Misc(object):
         # Assume this was successful unless otherwise observed.
         ok = True
 
+        # Check that all model files are present.
+        self.logger.info('Checking that all model files are present:')
+        model_dir = CONFIG.ENV_MODEL_PATH
+        if not model_dir:
+            self.logger.warning("         |-- {:16} {}".format(
+                'GTRANSLATE_MODEL_PATH', colour('NOT SET', ['bright'], fg='red')))
+            ok = False
+        elif not self.checkfolder(model_dir, 'GTRANSLATE_MODEL_PATH'):
+            ok = False
+        else:
+            model_files = [CONFIG.ADA_MULTI_CLASS,
+                           CONFIG.DT_MULTI_CLASS,
+                           CONFIG.KNN_MULTI_CLASS,
+                           CONFIG.XGB_MULTI_CLASS,
+                           CONFIG.MLP_MULTI_CLASS,
+                           CONFIG.LABEL_ENCODER]
+            for model_file in model_files:
+                if not self.checkfile(os.path.join(model_dir, model_file), model_file):
+                    ok = False
+
         if not ok:
-            raise GTranslateExit('Unexpected files were seen, or the reference package is corrupt.')
+            raise GTranslateExit('One or more model files are missing, check that GTRANSLATE_MODEL_PATH '
+                                 'points to the directory containing the gTranslate models.')
