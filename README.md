@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/cmc-aau/gTranslate/main/docs/src/_static/gtranslate_mark.svg" alt="gTranslate logo" width="160">
+</p>
+
 # gTranslate
 
 [![PyPI](https://img.shields.io/pypi/v/gtdb-gtranslate.svg)](https://pypi.python.org/pypi/gtdb-gtranslate)

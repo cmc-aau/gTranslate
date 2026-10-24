@@ -91,7 +91,7 @@ html_js_files = [
     'custom.js'
 ]
 
-html_logo = '_static/gTranslate_logo_red.svg'
+html_logo = '_static/gtranslate_lockup.svg'
 html_favicon = '_static/gtranslate_favicon.png'
 
 # Sitemap settings
@@ -160,7 +160,7 @@ if os.path.exists(css_override_path):
     margin-top: 10px;
     font-size: 90%;
     font-weight: bold;
-    color: #bf2000;
+    color: #A33A2C;
 }}
 """)
 
