@@ -1,10 +1,10 @@
 .. code-block:: bash
 
     # using mamba (recommended)
-    mamba create -n gtranslate-0.0.6 -c conda-forge -c bioconda gtdb-gtranslate=0.0.6
+    mamba create -n gtranslate-0.0.7 -c conda-forge -c bioconda gtdb-gtranslate=0.0.7
 
     # or using conda
-    conda create -n gtranslate-0.0.6 -c conda-forge -c bioconda gtdb-gtranslate=0.0.6
+    conda create -n gtranslate-0.0.7 -c conda-forge -c bioconda gtdb-gtranslate=0.0.7
 
     # activate the environment
-    conda activate gtranslate-0.0.6
+    conda activate gtranslate-0.0.7

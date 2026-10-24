@@ -1,6 +1,14 @@
 Announcements
 =============
 
+gTranslate 0.0.7
+----------------
+
+*October, 2026*
+
+* ``gtranslate test`` now works on installations from PyPI and Bioconda. Previous releases did
+  not include the genomes this command requires.
+
 gTranslate 0.0.6
 ----------------
 

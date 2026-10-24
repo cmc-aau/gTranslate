@@ -1,14 +1,14 @@
 .. code-block:: bash
 
     # Activate the gTranslate conda environment
-    conda activate gtranslate-0.0.6
+    conda activate gtranslate-0.0.7
 
     # Set the environment variable to the directory containing the gTranslate models
     conda env config vars set GTRANSLATE_MODEL_PATH="/path/to/unarchived/gtranslate/models/"
 
     # Re-activate the environment for the variable to take effect
     conda deactivate
-    conda activate gtranslate-0.0.6
+    conda activate gtranslate-0.0.7
 
 The directory must contain the following files (see :ref:`installing#gtranslate-models`):
 
