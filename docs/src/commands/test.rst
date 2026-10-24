@@ -27,6 +27,13 @@ Arguments
 Files output
 ------------
 
+Files are written to ``--out_dir``, or to a temporary directory which is deleted afterwards if ``--out_dir`` is
+not specified:
+
+* ``genomes/``: the three test genomes.
+* ``output/``: the output of ``detect_table`` run on the test genomes, see :ref:`commands/detect_table`.
+* ``test_execution.log``: the console output of ``detect_table``, which should be checked if the test fails.
+* :ref:`gtranslate.log <files/gtranslate.log>`
 
 
 Example

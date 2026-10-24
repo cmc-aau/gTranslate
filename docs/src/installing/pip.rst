@@ -11,13 +11,13 @@ Ensure that the software described in :ref:`installing#third-party-software` are
 
 
 Step 2: Install gTranslate via pip
--------------------------------
+----------------------------------
 
 Note: It is strongly recommended to create a `virtual environment <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/>`_
 for each version of gTranslate installed.
 
 
-Once the third-party dependencies have been installed, install gTranslate via `pip https://pypi.org/project/gtdb-gtranslate/`_:
+Once the third-party dependencies have been installed, install gTranslate via `pip <https://pypi.org/project/gtdb-gtranslate/>`_:
 
 .. code-block:: bash
 
@@ -33,8 +33,8 @@ Alternatively, if you have a previously installed gTranslate, you can upgrade th
 Step 3: Download and alias the gTranslate models
 ------------------------------------------------
 
-gTranslate accept both an environment variable named ``GTRANSLATE_MODEL_PATH`` to be set to the directory
-containing the models or accept a flag called `--custom_model_path` that points to the directory containing the models.
+gTranslate locates the models using the ``GTRANSLATE_MODEL_PATH`` environment variable, which must be set to the
+directory containing the models. Alternatively, the ``--custom_model_path`` argument of ``detect_table`` can be used.
 
 
 .. code-block:: bash
