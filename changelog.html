@@ -123,6 +123,8 @@
 <li><p>The genomes used by the <code class="docutils literal notranslate"><span class="pre">test</span></code> command are now included in the PyPI and Bioconda packages.
 Previously, <code class="docutils literal notranslate"><span class="pre">gtranslate</span> <span class="pre">test</span></code> failed on installed copies of gTranslate as these genomes were
 missing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">detect_table</span></code> now checks that all model files are present before calling genes. Previously,
+a missing model file was reported as a Prodigal error after genes had been called.</p></li>
 </ul>
 </section>
 <section id="id2">

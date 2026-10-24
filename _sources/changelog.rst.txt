@@ -10,6 +10,8 @@ Bug Fixes:
 * The genomes used by the ``test`` command are now included in the PyPI and Bioconda packages.
   Previously, ``gtranslate test`` failed on installed copies of gTranslate as these genomes were
   missing.
+* ``detect_table`` now checks that all model files are present before calling genes. Previously,
+  a missing model file was reported as a Prodigal error after genes had been called.
 
 
 0.0.6
