@@ -252,7 +252,7 @@ class Prodigal(object):
                         best_translation_table,
                         tmp_dir,
                         genome_id,
-                        genome_file,
+                        processed_prodigal_input,
                         total_bases
                     )
 

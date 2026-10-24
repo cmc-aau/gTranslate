@@ -2,6 +2,22 @@
 Change log
 ==========
 
+0.0.6
+-----
+
+Bug Fixes:
+
+* Genes reported for genomes predicted to use translation table 25 are now called on the
+  uncompressed genome. Previously, gzipped genomes predicted to use table 25 had their genes
+  called on the compressed file, producing only a handful of spurious genes in the files kept
+  with ``--keep_called_genes``. Predicted translation tables were not affected.
+
+Minor Changes:
+
+* ``check_install`` now verifies that ``GTRANSLATE_MODEL_PATH`` is set and that all model files
+  are present.
+
+
 0.0.5
 -----
 

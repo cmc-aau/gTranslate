@@ -1,6 +1,13 @@
+import os
+import tempfile
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, PropertyMock
+from gtranslate.config.common import CONFIG
+from gtranslate.exceptions import GTranslateExit
 from gtranslate.misc import Misc
+
+MODEL_FILES = [CONFIG.ADA_MULTI_CLASS, CONFIG.DT_MULTI_CLASS, CONFIG.KNN_MULTI_CLASS,
+               CONFIG.XGB_MULTI_CLASS, CONFIG.MLP_MULTI_CLASS, CONFIG.LABEL_ENCODER]
 
 
 class TestMisc(unittest.TestCase):
@@ -39,17 +46,42 @@ class TestMisc(unittest.TestCase):
         result = self.misc.checkfolder('/fake/dir', 'dir')
         self.assertFalse(result)
 
-    @patch('gtranslate.misc.check_dependencies')
-    def test_check_install_success(self, mock_check_dependencies):
-        # Mock that prodigal are on the PATH
-        mock_check_dependencies.return_value = True
+    def _make_model_dir(self, tmp_dir, missing=None):
+        # Create non-empty placeholder model files, optionally leaving one out
+        for model_file in MODEL_FILES:
+            if model_file != missing:
+                with open(os.path.join(tmp_dir, model_file), 'w') as fh:
+                    fh.write('model')
+        return tmp_dir
 
-        # Test the function (note: your current check_install hardcodes `ok = True`)
-        self.misc.check_install()
+    @patch.object(type(CONFIG), 'ENV_MODEL_PATH', new_callable=PropertyMock)
+    @patch('gtranslate.misc.check_dependencies')
+    def test_check_install_success(self, mock_check_dependencies, mock_model_path):
+        # Mock that prodigal is on the PATH and all model files are present
+        mock_check_dependencies.return_value = True
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            mock_model_path.return_value = self._make_model_dir(tmp_dir)
+            self.misc.check_install()
 
         # Verify it logged the presence of the tools
         self.assertTrue(self.misc.logger.info.called)
 
+    @patch.object(type(CONFIG), 'ENV_MODEL_PATH', new_callable=PropertyMock)
+    @patch('gtranslate.misc.check_dependencies')
+    def test_check_install_missing_model_file(self, mock_check_dependencies, mock_model_path):
+        mock_check_dependencies.return_value = True
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            mock_model_path.return_value = self._make_model_dir(tmp_dir, missing=CONFIG.XGB_MULTI_CLASS)
+            with self.assertRaises(GTranslateExit):
+                self.misc.check_install()
+
+    @patch.object(type(CONFIG), 'ENV_MODEL_PATH', new_callable=PropertyMock)
+    @patch('gtranslate.misc.check_dependencies')
+    def test_check_install_model_path_not_set(self, mock_check_dependencies, mock_model_path):
+        mock_check_dependencies.return_value = True
+        mock_model_path.return_value = None
+        with self.assertRaises(GTranslateExit):
+            self.misc.check_install()
 
 if __name__ == '__main__':
     unittest.main()
