@@ -91,7 +91,7 @@ html_js_files = [
     'custom.js'
 ]
 
-html_logo = '_static/gtranslate_lockup.svg'
+html_logo = '_static/gtranslate_stacked.svg'
 html_favicon = '_static/gtranslate_favicon.png'
 
 # Sitemap settings
