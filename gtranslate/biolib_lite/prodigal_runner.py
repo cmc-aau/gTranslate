@@ -123,8 +123,9 @@ class Prodigal(object):
                             25: {'UGA': 0, 'UGG': 0, 'GLY': 0}}
 
         if self.called_genes:
-            os.system('cp %s %s' %
-                      (os.path.abspath(genome_file), aa_gene_file))
+            # Not used by gTranslate: genes are always called. Kept to stay close to the
+            # original BioLib code, but metadata is not populated for this branch.
+            shutil.copyfile(os.path.abspath(genome_file), aa_gene_file)
         else:
             seqs = read_fasta(genome_file)
 
@@ -432,11 +433,10 @@ class Prodigal(object):
         else:
             proc_str = 'single'  # estimate parameters from data
 
-        args = '-m'
-        if self.closed_ends:
-            args += ' -c'
+        # each flag must be a separate argument, Prodigal rejects '-m -c'
+        args = ['-m'] + (['-c'] if self.closed_ends else [])
 
-        cmd = ['prodigal', args, '-p', proc_str, '-q',
+        cmd = ['prodigal'] + args + ['-p', proc_str, '-q',
                '-f', 'gff', '-g', str(translation_table),
                '-a', aa_gene_file_tmp, '-d', nt_gene_file_tmp,
                '-i', genome_file, '-o', gff_file_tmp]

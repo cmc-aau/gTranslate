@@ -60,6 +60,17 @@ class TestProdigalRunner(unittest.TestCase):
         self.assertGreater(num_genes_plain, 100)
         self.assertEqual(num_genes_gz, num_genes_plain)
 
+    def test_closed_ends_passed_as_separate_arguments(self):
+        # '-m -c' given as a single argument is rejected by Prodigal ('Unknown option')
+        self.prodigal.closed_ends = True
+        tt_dir = os.path.join(self.tmp_dir, '11')
+        os.makedirs(tt_dir)
+        aa_gene_file, _, _, _, error_msg = self.prodigal.run_prodigal_command(
+            11, self.tmp_dir, 'genome2_TT25', TT25_GENOME, 1000000)
+
+        self.assertIsNone(error_msg)
+        self.assertGreater(self._count_genes(aa_gene_file), 100)
+
 
 if __name__ == '__main__':
     unittest.main()
