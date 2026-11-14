@@ -82,3 +82,8 @@ Runs `detect_table` on three bundled genomes (one each for translation tables 4,
 gtranslate test --cpus 4
 ```
 *Note: If `--out_dir` is not specified, the test will securely execute in a temporary directory.*
+
+## References
+
+gTranslate is described in:
+- Chaumeil PA, et al. (2026). [gTranslate: rapid and accurate translation table prediction for prokaryotic genomes](https://peerj.com/articles/21825/). PeerJ, 14:e21825.
